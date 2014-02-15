@@ -30,7 +30,8 @@ file that was distributed with this source code.
                 {% block page_javascripts %} {# Deprecated block #}
                     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
                     <!--[if lt IE 9]>
-                        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                        <script src="{{ asset('bundles/faomain/js/html5shiv.js') }}"></script>
+                        <script src="{{ asset('bundles/faomain/js/respond.min.js') }}"></script>
                     <![endif]-->
 
                     <script src="{{ asset('bundles/faomain/js/jquery-1.10.2.min.js') }}" type="text/javascript"></script>
@@ -46,7 +47,7 @@ file that was distributed with this source code.
     {% endblock %}
 
     {% block sonata_page_body_tag %}
-        <body>
+        <body id="wrap">
     {% endblock %}
 
         {% block sonata_page_top_bar %}
