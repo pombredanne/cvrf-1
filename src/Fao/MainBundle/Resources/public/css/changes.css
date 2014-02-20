@@ -276,7 +276,9 @@ p{
 }
 
 
-
+.jumbotron p {
+    color: #ffffff;
+}
 
 .jumbotron {
      background-color: #5dc359;
