@@ -41,8 +41,8 @@ class AppKernel extends Kernel
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
             // PAGE
-            new Sonata\PageBundle\SonataPageBundle(),
-            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+//            new Sonata\PageBundle\SonataPageBundle(),
+//            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
 
             // NEWS
             new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
@@ -72,7 +72,7 @@ class AppKernel extends Kernel
             new Application\Sonata\NotificationBundle\ApplicationSonataNotificationBundle(),
 
             // CMF Integration
-            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+//            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
             // DEMO and QA - Can be deleted
             // new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
