@@ -1,3 +1,8 @@
 fao_main_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: FaoMainBundle:Default:index }
+
+fao_main_docs:
+    pattern:  /documents
+    defaults: { _controller: FaoMainBundle:Default:docs }
+    
