@@ -5,4 +5,3 @@ fao_main_homepage:
 fao_main_docs:
     pattern:  /documents
     defaults: { _controller: FaoMainBundle:Default:docs }
-    
