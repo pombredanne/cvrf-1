@@ -1,0 +1,25 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+    {% for media in medias %}
+        {% if loop.first %}
+            <div class="row">
+        {% elseif loop.index > 2 and loop.index -1 is divisible by(3) %}
+            <div class="row">
+        {% endif %}
+
+        <div  class="col-md-4 col-sm-4">
+
+            <h2>{{ media.name }}</h2>
+
+            <p>{{ media.description }}</p>
+            <div>
+                <a  href="{{ path('sonata_media_download', {'id': media|sonata_urlsafeid }) }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
+            </div>
+
+        </div>
+        {% if loop.index is divisible by(3) or loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
