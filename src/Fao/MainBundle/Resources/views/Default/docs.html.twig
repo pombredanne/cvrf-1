@@ -4,7 +4,7 @@
     {% for media in medias %}
         {% if loop.first %}
             <div class="row">
-        {% elseif loop.index > 2 and loop.index -1 is divisible by(3) %}
+        {% elseif loop.index > 2 and (loop.index -1) is divisible by(3) %}
             <div class="row">
         {% endif %}
 
