@@ -43,3 +43,33 @@ sonata_admin:
             - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
             - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
             # - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+        groups:
+            #sonata_document:
+            #    label: Documento
+            #    items:
+            #      - fao.documento.admin.documento
+            sonata_user:
+                label: Usuario
+                items:
+                  - sonata.user.admin.user
+                  - sonata.user.admin.group
+            sonata_media:
+                label: Multimedia
+                items:
+                  - sonata.media.admin.media
+                  - sonata.media.admin.gallery
+            sonata_block:
+                label: Blog
+                items:
+                  - sonata.news.admin.post
+                  - sonata.news.admin.comment
+            sonata_classification:
+                label: Clasificacion
+                items:
+                  - sonata.classification.admin.category
+                  - sonata.classification.admin.tag
+                  - sonata.classification.admin.collection
+            sonata_notifications:
+                label: Notificaciones
+                items:
+                  - sonata.notification.admin.message
