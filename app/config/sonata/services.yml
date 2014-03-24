@@ -1,0 +1,6 @@
+services:
+       fao.main.admin.docs:
+          class: Fao\MainBundle\Admin\DocsAdmin
+          tags:
+            - { name: sonata.admin, manager_type: orm, group: Documento, label: Documento }
+          arguments: [null,  Fao\MainBundle\Entity\Docs, FaoMainBundle:DocsAdmin]
