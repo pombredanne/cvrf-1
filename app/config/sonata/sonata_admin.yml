@@ -53,11 +53,11 @@ sonata_admin:
                 items:
                   - sonata.user.admin.user
                   - sonata.user.admin.group
-            #sonata_media:
-            #    label: Multimedia
-            #    items:
-            #      - sonata.media.admin.media
-            #      - sonata.media.admin.gallery
+            sonata_media:
+                label: Multimedia
+                items:
+                  - sonata.media.admin.media
+                  - sonata.media.admin.gallery
             #sonata_block:
             #    label: Blog
             #    items:

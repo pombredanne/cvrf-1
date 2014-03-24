@@ -65,7 +65,9 @@ class DocsAdmin extends Admin{
                 'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
             ->add('fechaDePublicacion', 'date', array('format' => 'MM/dd/yyyy',
                 'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
-            ->add('archivo', 'sonata_type_model_list', array(), array('link_parameters' => array('context' => 'news')));
+            ->add('archivo', 'sonata_type_model',array(),array(
+                'provider' => 'sonata.media.provider.file',
+                'context'  => 'new'));
         ;
     }
 
