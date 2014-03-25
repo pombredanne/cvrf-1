@@ -91,12 +91,17 @@ class Docs
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_de_publicacion", type="date")
+     * @ORM\Column(name="fecha_de_publicacion", type="date", nullable = true)
      */
     private $fechaDePublicacion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"all"})
      */
     private $archivo;
 
@@ -323,10 +328,33 @@ class Docs
     /**
      * Get archivo
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
     public function getArchivo()
     {
         return $this->archivo;
+    }
+
+    /**
+     * Set archivo
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $user
+     * @return Docs
+     */
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

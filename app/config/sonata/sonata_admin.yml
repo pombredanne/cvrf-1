@@ -11,6 +11,9 @@ sonata_admin:
             STAFF:    [EDIT, LIST, CREATE]
             EDITOR:   [OPERATOR, EXPORT]
             ADMIN:    [MASTER]
+            ED:       [EDIT, LIST]
+            DOC:      [CREATE, DELETE]
+            VW:       [VIEW]
         # permissions not related to an object instance and also to be available when objects do not exist
         # the DELETE admin permission means the user is allowed to batch delete objects
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
@@ -53,11 +56,16 @@ sonata_admin:
                 items:
                   - sonata.user.admin.user
                   - sonata.user.admin.group
-            sonata_media:
-                label: Multimedia
+            sonata_terminos:
+                label: Terminos
                 items:
-                  - sonata.media.admin.media
-                  - sonata.media.admin.gallery
+                  - fao.main.admin.terminos
+                    #      - sonata.media.admin.gallery
+            #sonata_media:
+            #    label: Multimedia
+            #    items:
+            #      - sonata.media.admin.media
+            #      - sonata.media.admin.gallery
             #sonata_block:
             #    label: Blog
             #    items:
