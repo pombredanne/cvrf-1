@@ -2,14 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: Andros Laptop
- * Date: 3/23/14
- * Time: 4:30 PM
+ * Date: 3/24/14
+ * Time: 9:58 PM
  */
 
 namespace Fao\MainBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController as CRUD;
-class DocsAdminController extends CRUD{
-
+class TeminosAdminController extends CRUD{
 
 } 

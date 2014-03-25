@@ -21,7 +21,7 @@ class DocsAdmin extends Admin{
     protected function configureListFields(ListMapper $mapper)
     {
         $mapper
-            ->addIdentifier('id', null,array('label' => 'Identificador', 'route' => array('name'=> 'show')))
+            ->addIdentifier('id', null,array('label' => 'Id', 'route' => array('name'=> 'show')))
             ->add('estado')
             ->add('titulo')
             ->add('autor')
@@ -31,6 +31,13 @@ class DocsAdmin extends Admin{
             ->add('anno')
             ->add('fechaDePublicacion')
             ->add('archivo')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'show' => array(),
+                    'delete' => array(),
+                )
+            ))
         ;
     }
 
@@ -51,8 +58,8 @@ class DocsAdmin extends Admin{
     {
         $mapper
             ->add('estado', 'choice',
-                array('choices' => array('Restitucion' => 'Restitucion', 'Borrador' => 'Borrador',
-                    'Presentado' => 'Presentado', 'Publicado' => 'Publicado'), 'required' => true, 'empty_value' => 'Seleccione un valor',
+                array('choices' => array('Borrador' => 'Borrador',
+                    'Presentado' => 'Presentado'), 'required' => true, 'empty_value' => 'Seleccione un Valor',
                     'empty_data'  => null, 'label' => 'Estado', ))
             ->add('titulo')
             ->add('resumen')
@@ -63,9 +70,7 @@ class DocsAdmin extends Admin{
             ->add('pais', null, array('label' => "Pais"))
             ->add('anno', 'date', array('label' => 'Anno', 'format' => 'MM/dd/yyyy',
                 'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
-            ->add('fechaDePublicacion', 'date', array('format' => 'MM/dd/yyyy',
-                'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
-            ->add('archivo', 'sonata_type_model_list',array(),array( 'link_parameters' => array('context' => 'default','provider' => 'sonata.media.provider.file')))
+            ->add('archivo', 'sonata_type_model_list',array(),array( 'link_parameters' => array('context' => 'news','provider' => 'sonata.media.provider.file')))
         ;
     }
 
@@ -83,6 +88,7 @@ class DocsAdmin extends Admin{
             ->add('anno')
             ->add('fechaDePublicacion')
             ->add('archivo')
+            ->add('user')
         ;
     }
 
