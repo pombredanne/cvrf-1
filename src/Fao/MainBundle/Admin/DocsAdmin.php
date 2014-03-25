@@ -123,7 +123,7 @@ class DocsAdmin extends Admin{
         $queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
 
         //if is logged admin, show all data
-        if ($this->securityContext->isGranted('ROLE_SUPER_ADMIN')){
+        if ($this->securityContext->isGranted('ROLE_ADMIN_S')){
             $queryBuilder->select('list')
                 ->from($this->getClass(),'list')
             ;
