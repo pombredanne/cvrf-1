@@ -13,7 +13,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
+use \Symfony\Component\Security\Core\SecurityContextInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class DocsAdmin extends Admin{
 
@@ -90,6 +92,61 @@ class DocsAdmin extends Admin{
             ->add('archivo')
             ->add('user')
         ;
+    }
+
+    /**
+     * Security Context
+     * @var \Symfony\Component\Security\Core\SecurityContextInterface
+     */
+    protected $securityContext;
+
+    public function setSecurityContext(SecurityContextInterface $securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        //remove all routes except those, you are using in admin and you can secure by yourself
+        $collection
+            ->clearExcept(array(
+                'show',
+                'create',
+                'list',
+                'edit',
+            ))
+        ;
+    }
+
+    public function createQuery($context = 'list')
+    {
+        $queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
+
+        //if is logged admin, show all data
+        if ($this->securityContext->isGranted('ROLE_SUPER_ADMIN')){
+            $queryBuilder->select('list')
+                ->from($this->getClass(),'list')
+            ;
+        } else if($this->securityContext->isGranted('ROLE_EDITOR')) {
+
+            $queryBuilder->select('list')
+                ->from($this->getClass(),'list')
+                ->where('list.estado=:estado')
+                ->setParameter('estado', 'Presentado')
+            ;
+        }else{
+            //for other users, show only data, which belongs to them
+            $adminId = $this->securityContext->getToken()->getUser()->getId();
+
+            $queryBuilder->select('list')
+                ->from($this->getClass(),'list')
+                ->where('list.user=:adminId')
+                ->setParameter('adminId', $adminId)
+            ;
+        }
+
+        $proxyQuery = new ProxyQuery($queryBuilder);
+        return $proxyQuery;
     }
 
 } 

@@ -2,6 +2,11 @@ fao_main_homepage:
     pattern:  /
     defaults: { _controller: FaoMainBundle:Default:docs }
 
+fao_main_terminos:
+    pattern:  /terminos
+    defaults: { _controller: FaoMainBundle:Default:terminos }
+
+
 #fao_main_docs:
 #    pattern:  /documents
 #    defaults: { _controller: FaoMainBundle:Default:docs }
