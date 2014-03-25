@@ -32,11 +32,12 @@ class OwnerVoter implements VoterInterface{
             $user = $token->getUser();
             // comprobar que el documento que se edita fue publicada
             // por este usuario
-            if ($object->getDocs()->getUser() === $user->getId()) {
-                return VoterInterface::ACCESS_GRANTED;
-            } else {
-                return VoterInterface::ACCESS_DENIED;
-            }
+
+            //if ($object->getDocs()->getUser() === $user->getId()) {
+            //    return VoterInterface::ACCESS_GRANTED;
+            //} else {
+            //    return VoterInterface::ACCESS_DENIED;
+            //}
         }
         return VoterInterface::ACCESS_ABSTAIN;
     }
