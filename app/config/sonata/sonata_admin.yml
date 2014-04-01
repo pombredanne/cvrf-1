@@ -11,6 +11,9 @@ sonata_admin:
             STAFF:    [EDIT, LIST, CREATE]
             EDITOR:   [OPERATOR, EXPORT]
             ADMIN:    [MASTER]
+            ED:       [EDIT, LIST]
+            DOC:      [CREATE, DELETE]
+            VW:       [VIEW]
         # permissions not related to an object instance and also to be available when objects do not exist
         # the DELETE admin permission means the user is allowed to batch delete objects
         admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
@@ -43,3 +46,38 @@ sonata_admin:
             - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
             - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
             # - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+        groups:
+            sonata_document:
+                label: Documento
+                items:
+                  - fao.main.admin.docs
+            sonata_user:
+                label: Usuario
+                items:
+                  - sonata.user.admin.user
+                  - sonata.user.admin.group
+            sonata_terminos:
+                label: Terminos
+                items:
+                  - fao.main.admin.terminos
+                    #      - sonata.media.admin.gallery
+            #sonata_media:
+            #    label: Multimedia
+            #    items:
+            #      - sonata.media.admin.media
+            #      - sonata.media.admin.gallery
+            #sonata_block:
+            #    label: Blog
+            #    items:
+            #      - sonata.news.admin.post
+            #      - sonata.news.admin.comment
+            #sonata_classification:
+            #    label: Clasificacion
+            #    items:
+            #      - sonata.classification.admin.category
+            #      - sonata.classification.admin.tag
+            #      - sonata.classification.admin.collection
+            #sonata_notifications:
+            #    label: Notificaciones
+            #    items:
+            #      - sonata.notification.admin.message
