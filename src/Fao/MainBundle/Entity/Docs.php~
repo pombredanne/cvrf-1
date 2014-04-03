@@ -1,0 +1,102 @@
+<?php
+
+namespace Fao\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Docs
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Fao\MainBundle\Entity\DocsRepository")
+ */
+class Docs
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=255)
+     */
+    private $estado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=255)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resumen", type="text", length=1024)
+     */
+    private $resumen;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autor", type="string", length=150)
+     */
+    private $autor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nivel", type="string", length=255)
+     */
+    private $nivel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instituto", type="string", length=255)
+     */
+    private $instituto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pais", type="string", length=255)
+     */
+    private $pais;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="anno", type="date")
+     */
+    private $anno;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_de_publicacion", type="date")
+     */
+    private $fechaDePublicacion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     */
+    private $archivo;
+}

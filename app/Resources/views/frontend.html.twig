@@ -1,0 +1,120 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {% stylesheets '@FaoMainBundle/Resources/public/css/bootstrap.css'
+    '@FaoMainBundle/Resources/public/css/changes.css'
+    filter='yui_css'
+    output='css/cvrf.css'%}
+    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div id="wrap">
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container globalcontainer">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{path('fao_main_homepage')}}"><img style="height: 60px" src="{{asset("bundles/faomain/images/logo.png")}}"></a>
+                </div>
+                <div class="collapse navbar-collapse">
+
+                    <div id="sb-search" class="sb-search busqueda">
+                        <form action="http://lupa.upr.edu.cu" method="get" target="_blank">
+                            <input class="sb-search-input" placeholder="Buscar" type="text" value="" name="q" id="search">
+                            <input class="sb-search-submit" type="submit" value="">
+                            <span class="sb-icon-search"></span>
+                        </form>
+                    </div>
+
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Categor&iacuteas</a></li>
+                        <li><a href="/admin">Registrarse</a></li>
+                        <li><a href="{{ path('fao_main_terminos') }}">Terminos</a></li>
+                    </ul>
+
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                {% block content_top %}
+                    <h3>Bienvenido a la Comunidad Virtual de Recursos Forestales</h3>
+                    <p>
+                        La Comunidad Virtual de Recursos Forestales tiene como objetivo integrar un sistema de herramientas informáticas que favorezca, la diseminación de la información forestal entre todos los actores del sector, así como favorecer la disponibilidad de información forestal para mejorar el monitoreo del aprovechamiento forestal a lo largo del país. Esta soportado sobre el Proyecto FAO-FLEGT "Compartir información para el fortalecimiento del conocimiento sobre el sector
+                        forestal cubano entre todos los actores participantes".
+                    </p>
+                {% endblock %}
+                {#<div class="row">#}
+                    {#<div class="col-md-3 col-sm-3">#}
+                        {#<h3>Category Name</h3>#}
+                        {#<ul>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                    {#<div class="col-md-3 col-sm-3">#}
+                        {#<h3>Category Name</h3>#}
+                        {#<ul>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                    {#<div class="col-md-3 col-sm-3">#}
+                        {#<h3>Category Name</h3>#}
+                        {#<ul>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                            {#<li><a href="#">Item number one</a></li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                {#</div>#}
+            </div>
+        </div>
+
+        <div class="container">
+            {% block content %}{% endblock %}
+
+        </div><!-- /.container -->
+    </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <h3>Contacto</h3>
+                <p>
+                    Comunidad Virtual de Recursos Forestales <br />
+                    Universidad de Pinar del Rio <br />
+                    Edificio Docente 4to piso, Marti #300, Pinar del Rio. <br />
+                    cvforestal@upr.edu.cu
+                </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@FaoMainBundle/Resources/public/js/jquery-1.10.2.min.js'
+    '@FaoMainBundle/Resources/public/js/bootstrap.js'
+    '@FaoMainBundle/Resources/public/js/classie.js'
+    '@FaoMainBundle/Resources/public/js/uisearch.js'
+    filter='yui_js'
+    output='js/cvrf.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <script>
+        new UISearch( document.getElementById( 'sb-search' ) );
+    </script>
+{% endblock %}

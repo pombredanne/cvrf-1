@@ -6,8 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('FaoMainBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('FaoMainBundle:Default:index.html.twig', array());
+    }
+
+    public function docsAction()
+    {
+       // $medias = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')->findBy(array( 'context' => 'default'));
+
+        //return $this->render('FaoMainBundle:Default:docs.html.twig', array('medias' => $medias));
+        $documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findAll();
+        return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
+    }
+
+    public function terminosAction()
+    {
+        $terminos = $this->getDoctrine()->getRepository('FaoMainBundle:Teminos')->find(2);
+        return $this->render('FaoMainBundle:Default:terminos.html.twig', array( 'terminos' => $terminos));
     }
 }
