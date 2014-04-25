@@ -100,3 +100,30 @@ swiftmailer:
 
 jms_security_extra:
     secure_all_services: false
+
+#fos_elastica:
+#    clients:
+#        default: { host: localhost, port: 9200 }
+#    serializer:
+#        callback_class: FOS\ElasticaBundle\Serializer\Callback
+#        serializer: serializer
+#    indexes:
+#        fao:
+#            client: default
+#            types:
+#                docs:
+#                    mappings:
+#                        estado: { boost: 3 }
+#                        titulo: { boost: 5 }
+#                        resumen: { boost: 4 }
+#                        autor: { boost: 5 }
+#                        instituto: { boost: 4 }
+#                        pais: { boost: 3 }
+#                        anno: { boost: 3 }
+#                        fechaDePublicacion: { boost: 3 }
+#                        archivo:
+#                            type: "nested"
+#                            properties:
+#                                name: { boost: 5 }
+#                                contentType: { boost: 4 }
+#                                updatedAt: { boost: 4 }
