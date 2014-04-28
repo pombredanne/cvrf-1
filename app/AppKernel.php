@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             // DOCTRINE
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
@@ -74,10 +75,6 @@ class AppKernel extends Kernel
             // CMF Integration
 //            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
-            // DEMO and QA - Can be deleted
-            // new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
-            // new Sonata\Bundle\QABundle\SonataQABundle(),
-
             // Disable this if you don't want the audit on entities
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
 
@@ -86,7 +83,7 @@ class AppKernel extends Kernel
             new Sonata\TimelineBundle\SonataTimelineBundle(),
             new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(),  // easy extends integration,
             new Fao\MainBundle\FaoMainBundle(),
-//            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
