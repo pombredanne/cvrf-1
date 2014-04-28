@@ -9,6 +9,17 @@ fos_user:
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
 
+    registration:
+        confirmation:
+            enabled:    true
+
+    from_email:
+        address:        noreply@cvforestal.upr.edu.cu
+        sender_name:    Comunidad Virtual de Recursos Forestales
+
+    service:
+        mailer: fos_user.mailer.default
+
 # Enable Doctrine to map the provided entities
 doctrine:
     orm:
