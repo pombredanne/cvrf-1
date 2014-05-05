@@ -6,6 +6,11 @@ fao_main_terminos:
     pattern:  /terminos
     defaults: { _controller: FaoMainBundle:Default:terminos }
 
+fao_main_search:
+    pattern:  /search
+    defaults: { _controller: FaoMainBundle:Default:search }
+    methods:  [GET, HEAD]
+
 
 #fao_main_docs:
 #    pattern:  /documents

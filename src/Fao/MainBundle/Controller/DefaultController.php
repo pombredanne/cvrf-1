@@ -2,6 +2,7 @@
 
 namespace Fao\MainBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -24,5 +25,15 @@ class DefaultController extends Controller
     {
         $terminos = $this->getDoctrine()->getRepository('FaoMainBundle:Teminos')->find(2);
         return $this->render('FaoMainBundle:Default:terminos.html.twig', array( 'terminos' => $terminos));
+    }
+
+    public function searchAction(Request $request)
+    {
+        $manager = $this->get('fos_elastica.manager');
+        $repository = $manager->getRepository('FaoMainBundle:Docs');
+        $searchTerm = $request->query->get('q');
+        $documentos = $repository->find($searchTerm);
+
+        return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
     }
 }
