@@ -35,10 +35,14 @@
 
                     <ul class="nav navbar-nav">
                         <li><a href="#">Categor&iacute;as</a></li>
-                        <li><a href="{{ path('fos_user_registration_register') }}">Registrarse</a></li>
-                        <li><a href="{{ path('fos_user_security_login') }}">Entrar</a></li>
                         <li><a href="{{ path('fao_main_terminos') }}">T&eacute;rminos</a></li>
                         <li><a href="http://www.fao.org/forestry/material-educativo/base-de-datos/bd/es/">FAO</a></li>
+                        {% if not is_granted('ROLE_USER') %}
+                            <li><a href="{{ path('fos_user_registration_register') }}">Registrarse</a></li>
+                            <li><a href="{{ path('fos_user_security_login') }}">Entrar</a></li>
+                        {% else %}
+                            <li><a href="{{ path('fos_user_security_logout') }}">Salir</a></li>
+                        {% endif %}
                     </ul>
 
                 </div><!--/.nav-collapse -->
