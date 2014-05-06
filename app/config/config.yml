@@ -109,6 +109,7 @@ fos_elastica:
         serializer: serializer
     indexes:
         fao:
+            finder: ~
             client: default
             types:
                 docs:
@@ -117,6 +118,7 @@ fos_elastica:
                         model: Fao\MainBundle\Entity\Docs
                         provider: ~
                         finder: ~
+                        listener: ~
                     mappings:
                         estado: { boost: 3 }
                         titulo: { boost: 5 }
