@@ -53,6 +53,7 @@ security:
                 provider:       fos_userbundle
                 login_path:     /login
                 use_forward:    false
+                default_target_path: /admin/dashboard
                 check_path:     /login_check
                 failure_path:   null
             logout:       true

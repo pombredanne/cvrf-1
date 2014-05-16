@@ -103,7 +103,7 @@ jms_security_extra:
 
 fos_elastica:
     clients:
-        default: { host: localhost, port: 9200 }
+        default: { host: wh-plus.upr.edu.cu, port: 9200 }
     serializer:
         callback_class: FOS\ElasticaBundle\Serializer\Callback
         serializer: serializer
