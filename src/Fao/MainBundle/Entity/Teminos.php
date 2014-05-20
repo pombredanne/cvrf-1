@@ -28,6 +28,20 @@ class Teminos
      */
     private $terminos;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contentFormatter", type="string")
+     */
+    private $contentFormatter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
+
 
     /**
      * Get id
@@ -60,5 +74,51 @@ class Teminos
     public function getTerminos()
     {
         return $this->terminos;
+    }
+
+    /**
+     * Set contentFormatter
+     *
+     * @param string $contentFormatter
+     * @return ContentFormatter
+     */
+    public function setContentFormatter($contentFormatter)
+    {
+        $this->contentFormatter = $contentFormatter;
+
+        return $this;
+    }
+
+    /**
+     * Get contentFormatter
+     *
+     * @return string 
+     */
+    public function getContentFormatter()
+    {
+        return $this->contentFormatter;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 }

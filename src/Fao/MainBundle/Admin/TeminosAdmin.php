@@ -13,8 +13,14 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 
 class TeminosAdmin extends Admin{
+
+    /**
+     * @var Pool
+     */
+    protected $formatterPool;
 
     //Listar los elementos que poseemos
     protected function configureListFields(ListMapper $mapper)
@@ -28,6 +34,7 @@ class TeminosAdmin extends Admin{
                     'delete' => array(),
                 )
             ))
+            
         ;
     }
 
@@ -44,7 +51,16 @@ class TeminosAdmin extends Admin{
     protected function configureFormFields(FormMapper $mapper)
     {
         $mapper
-            ->add('terminos')
+            ->add('content', 'sonata_formatter_type', array(
+                'event_dispatcher' => $mapper->getFormBuilder()->getEventDispatcher(),
+                'format_field'   => 'contentFormatter',
+                'source_field'   => 'terminos',
+                'source_field_options'      => array(
+                    'attr' => array('class' => 'span10', 'rows' => 20)
+                ),
+                'target_field'   => 'content',
+                'listener'       => true,
+            ))
         ;
     }
 
@@ -54,5 +70,39 @@ class TeminosAdmin extends Admin{
             ->add('id')
             ->add('terminos')
         ;
+    }
+
+    /**
+     * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool
+     *
+     * @return void
+     */
+    public function setPoolFormatter(FormatterPool $formatterPool)
+    {
+        $this->formatterPool = $formatterPool;
+    }
+
+    /**
+     * @return \Sonata\FormatterBundle\Formatter\Pool
+     */
+    public function getPoolFormatter()
+    {
+        return $this->formatterPool;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($terminos)
+    {
+        $terminos->setContent($this->getPoolFormatter()->transform($terminos->getContentFormatter(), $terminos->getTerminos()));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($terminos)
+    {
+        $terminos->setContent($this->getPoolFormatter()->transform($terminos->getContentFormatter(), $terminos->getTerminos()));
     }
 } 
