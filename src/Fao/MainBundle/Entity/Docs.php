@@ -3,6 +3,7 @@
 namespace Fao\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Docs
@@ -34,63 +35,63 @@ class Docs
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Seleccione el estado del documento")
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el titulo del documento")
      * @ORM\Column(name="titulo", type="string", length=255)
      */
     private $titulo;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el resumen del documento")
      * @ORM\Column(name="resumen", type="text", length=1024)
      */
     private $resumen;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el autor del documento")
      * @ORM\Column(name="autor", type="string", length=150)
      */
     private $autor;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el nivel del docuemnto")
      * @ORM\Column(name="nivel", type="string", length=255)
      */
     private $nivel;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el nombre del instituto al que pertenece")
      * @ORM\Column(name="instituto", type="string", length=255)
      */
     private $instituto;
 
     /**
      * @var string
-     *
+     * @Assert\Date(message="Introdusca una fecha")
      * @ORM\Column(name="pais", type="string", length=255)
      */
     private $pais;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="Escriba el nivel del docuemnto")
      * @ORM\Column(name="anno", type="date")
      */
     private $anno;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="Ponga la fecha del documento")
      * @ORM\Column(name="fecha_de_publicacion", type="date", nullable = true)
      */
     private $fechaDePublicacion;
