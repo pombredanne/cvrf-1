@@ -17,7 +17,7 @@ class DefaultController extends Controller
        // $medias = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')->findBy(array( 'context' => 'default'));
 
         //return $this->render('FaoMainBundle:Default:docs.html.twig', array('medias' => $medias));
-        $documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findAll();
+        $documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'Publicado'));
         return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
     }
 

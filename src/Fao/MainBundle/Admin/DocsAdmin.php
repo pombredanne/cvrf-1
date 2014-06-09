@@ -138,7 +138,8 @@ class DocsAdmin extends Admin{
 
             $queryBuilder->select('list')
                 ->from($this->getClass(),'list')
-                ->where('list.user=:adminId')
+                ->where('list.user=:adminId and list.estado != :estado')
+				->setParameter('estado','Publicado')
                 ->setParameter('adminId', $adminId)
             ;
         }
