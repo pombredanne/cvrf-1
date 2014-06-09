@@ -103,19 +103,19 @@ class DocsAdmin extends Admin{
         $this->securityContext = $securityContext;
     }
 
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        //remove all routes except those, you are using in admin and you can secure by yourself
-        $collection
-            ->clearExcept(array(
-                'show',
-                'create',
-                'list',
-                'edit',
-                'delete',
-            ))
-        ;
-    }
+    // protected function configureRoutes(RouteCollection $collection)
+    // {
+    //     //remove all routes except those, you are using in admin and you can secure by yourself
+    //     $collection
+    //         ->clearExcept(array(
+    //             'show',
+    //             'create',
+    //             'list',
+    //             'edit',
+    //             'delete',
+    //         ))
+    //     ;
+    // }
 
     public function createQuery($context = 'list')
     {
