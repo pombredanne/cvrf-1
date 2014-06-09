@@ -61,11 +61,11 @@ sonata_admin:
                 items:
                   - fao.main.admin.terminos
                     #      - sonata.media.admin.gallery
-#            sonata_media:
-#                label: Multimedia
-#                items:
-#                  - sonata.media.admin.media
-#                  - sonata.media.admin.gallery
+            sonata_media:
+                label: Multimedia
+                items:
+                  - sonata.media.admin.media
+                 # - sonata.media.admin.gallery
             sonata_block:
                 label: Blog
                 items:

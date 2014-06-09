@@ -23,9 +23,8 @@ class DocsAdmin extends Admin{
     protected function configureListFields(ListMapper $mapper)
     {
         $mapper
-            ->addIdentifier('id', null,array('label' => 'Id', 'route' => array('name'=> 'show')))
+            ->addIdentifier('titulo', null, array('route' => array('name'=> 'show')))
             ->add('estado')
-            ->add('titulo')
             ->add('autor')
             ->add('nivel')
             ->add('instituto')
@@ -36,7 +35,6 @@ class DocsAdmin extends Admin{
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
-                    'show' => array(),
                     'delete' => array(),
                 )
             ))
@@ -105,18 +103,19 @@ class DocsAdmin extends Admin{
         $this->securityContext = $securityContext;
     }
 
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        //remove all routes except those, you are using in admin and you can secure by yourself
-        $collection
-            ->clearExcept(array(
-                'show',
-                'create',
-                'list',
-                'edit',
-            ))
-        ;
-    }
+    // protected function configureRoutes(RouteCollection $collection)
+    // {
+    //     //remove all routes except those, you are using in admin and you can secure by yourself
+    //     $collection
+    //         ->clearExcept(array(
+    //             'show',
+    //             'create',
+    //             'list',
+    //             'edit',
+    //             'delete',
+    //         ))
+    //     ;
+    // }
 
     public function createQuery($context = 'list')
     {
