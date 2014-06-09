@@ -23,9 +23,8 @@ class DocsAdmin extends Admin{
     protected function configureListFields(ListMapper $mapper)
     {
         $mapper
-            ->addIdentifier('id', null,array('label' => 'Id', 'route' => array('name'=> 'show')))
+            ->addIdentifier('titulo', null, array('label' => 'Id', 'route' => array('name'=> 'show')))
             ->add('estado')
-            ->add('titulo')
             ->add('autor')
             ->add('nivel')
             ->add('instituto')
@@ -36,7 +35,6 @@ class DocsAdmin extends Admin{
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
-                    'show' => array(),
                     'delete' => array(),
                 )
             ))
