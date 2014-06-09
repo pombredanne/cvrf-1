@@ -26,6 +26,7 @@ class DocsAdminController extends CRUD{
         $adminId = $securityContext->getToken()->getUser();
         /** @var $form \Symfony\Component\Form\Form */
         $object->setUser($adminId);
+        $object->setFechaDePublicacion(new \DateTime('now'));
         $form = $this->admin->getForm();
         $form->setData($object);
 

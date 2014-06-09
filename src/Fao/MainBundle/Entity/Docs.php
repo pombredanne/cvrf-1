@@ -77,14 +77,14 @@ class Docs
 
     /**
      * @var string
-     * @Assert\Date(message="Introdusca una fecha")
+     * @Assert\NotBlank(message="Escriba el pais de prosedencia")
      * @ORM\Column(name="pais", type="string", length=255)
      */
     private $pais;
 
     /**
      * @var \DateTime
-     * @Assert\NotBlank(message="Escriba el nivel del docuemnto")
+     * @Assert\Date(message="Introdusca una fecha")
      * @ORM\Column(name="anno", type="date")
      */
     private $anno;
@@ -296,7 +296,7 @@ class Docs
      * @param \DateTime $fechaDePublicacion
      * @return Docs
      */
-    public function setFechaDePublicacion($fechaDePublicacion)
+    public function setFechaDePublicacion($fechaDePublicacion = null)
     {
         $this->fechaDePublicacion = $fechaDePublicacion;
 
