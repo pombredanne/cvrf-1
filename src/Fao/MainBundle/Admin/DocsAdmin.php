@@ -26,9 +26,6 @@ class DocsAdmin extends Admin{
             ->addIdentifier('titulo', null, array('route' => array('name'=> 'show')))
             ->add('estado')
             ->add('autor')
-            ->add('nivel')
-            ->add('instituto')
-            ->add('pais')
             ->add('anno')
             ->add('fechaDePublicacion')
             ->add('archivo')
@@ -76,7 +73,6 @@ class DocsAdmin extends Admin{
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
             ->add('estado')
             ->add('titulo')
             ->add('resumen')
