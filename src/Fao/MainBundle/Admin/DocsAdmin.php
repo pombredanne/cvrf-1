@@ -45,7 +45,6 @@ class DocsAdmin extends Admin{
     protected function configureDatagridFilters(DatagridMapper $mapper)
     {
         $mapper
-            ->add('id')
             ->add('estado')
             ->add('titulo')
             ->add('autor')
@@ -70,7 +69,7 @@ class DocsAdmin extends Admin{
             ->add('pais', null, array('label' => "Pais"))
             ->add('anno', 'date', array('label' => 'Anno', 'format' => 'MM/dd/yyyy',
                 'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
-            ->add('archivo', 'sonata_type_model_list',array(),array( 'link_parameters' => array('context' => 'news','provider' => 'sonata.media.provider.file')))
+            ->add('archivo', 'sonata_type_model_list',array(),array( 'link_parameters' => array('context' => 'default','provider' => 'sonata.media.provider.file')))
         ;
     }
 

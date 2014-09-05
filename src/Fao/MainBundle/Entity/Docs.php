@@ -50,7 +50,7 @@ class Docs
     /**
      * @var string
      * @Assert\NotBlank(message="Escriba el resumen del documento")
-     * @ORM\Column(name="resumen", type="text", length=1024)
+     * @ORM\Column(name="resumen", type="text", length=10000)
      */
     private $resumen;
 
