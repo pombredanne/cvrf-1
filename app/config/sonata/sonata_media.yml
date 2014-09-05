@@ -28,9 +28,9 @@ sonata_media:
                 - sonata.media.provider.image
                 - sonata.media.provider.file
 
-             formats:
-                 abtract: { width: 100, quality: 100}
-                 wide:    { width: 820 , quality: 100}
+            formats:
+               abtract: { width: 100, quality: 100}
+               wide:    { width: 820 , quality: 100}
 
         # sonata_category:
         #     providers:
