@@ -27,7 +27,6 @@ class DocsAdmin extends Admin{
             ->add('estado')
             ->add('autor')
             ->add('anno')
-            ->add('fechaDePublicacion')
             ->add('archivo')
             ->add('_action', 'actions', array(
                 'actions' => array(
