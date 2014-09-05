@@ -36,4 +36,10 @@ class DefaultController extends Controller
 
         return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
     }
+
+    public function showAction($id)
+    {
+        $documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->find($id);
+        return $this->render('FaoMainBundle:Default:show.html.twig', array( 'documento' => $documentos));
+    }
 }

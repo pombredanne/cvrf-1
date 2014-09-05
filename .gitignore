@@ -10,6 +10,8 @@ web/bundles/*
 web/css/*
 web/js/*
 web/uploads/*
+vendor(el que estaba).rar
+vendor.zip
 
 # -- Composer -----------------------------------------
 composer.phar
