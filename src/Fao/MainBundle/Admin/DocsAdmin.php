@@ -45,7 +45,6 @@ class DocsAdmin extends Admin{
             ->add('titulo')
             ->add('autor')
             ->add('pais')
-
         ;
     }
 
@@ -82,7 +81,6 @@ class DocsAdmin extends Admin{
             ->add('instituto')
             ->add('pais')
             ->add('anno')
-//            ->add('fechaDePublicacion')
             ->add('archivo')
             ->add('user')
         ;
