@@ -84,6 +84,7 @@ class AppKernel extends Kernel
             new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(),  // easy extends integration,
             new Fao\MainBundle\FaoMainBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new Lexik\Bundle\WorkflowBundle\LexikWorkflowBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

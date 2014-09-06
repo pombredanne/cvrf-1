@@ -1,6 +1,6 @@
 {
-    "name": "sonata-project/sandbox",
-    "description": "Sonata Project's sandbox",
+    "name": "upr/cvrf",
+    "description": "Comunidad Virtual de Recursos Forestales",
 
     "autoload": {
         "psr-0": { "": "src/" }
@@ -40,6 +40,7 @@
         "knplabs/gaufrette": "0.1.4",
         "knplabs/knp-menu-bundle": "1.1.x-dev",
         "knplabs/knp-markdown-bundle": "1.2.*@dev",
+        "knplabs/knp-paginator-bundle": "2.4.*@dev",
 
         "sonata-project/core-bundle": "~2.2@dev",
         "sonata-project/easy-extends-bundle": "~2.1",
@@ -65,6 +66,8 @@
         "friendsofsymfony/rest-bundle": "1.2.*@dev",
         "friendsofsymfony/elastica-bundle": "3.0.*@dev",
         "friendsofsymfony/jsrouting-bundle": "2.0.*@dev",
+        "friendsofsymfony/oauth-server-bundle": "1.4.*@dev",
+        "friendsofsymfony/comment-bundle": "2.0.*@dev",
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
@@ -79,6 +82,11 @@
         "stephpy/timeline": "~1.0@dev",
         "samson/data-grid-bundle": "2.0.*@dev",
         "kitpages/data-grid-bundle": "dev-master",
+        "lexik/workflow-bundle": "dev-master",
+        "white-october/pagerfanta-bundle": "1.0.*@dev",
+        "suncat/admin-page-board-bundle": "dev-master",
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "nelmio/api-doc-bundle": "2.7.*@dev",
         "liuggio/ExcelBundle": "2.0.*@dev"
 
     },
