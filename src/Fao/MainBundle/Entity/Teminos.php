@@ -24,9 +24,9 @@ class Teminos
     /**
      * @var string
      *
-     * @ORM\Column(name="terminos", type="text")
+     * @ORM\Column(name="raw_content", type="text")
      */
-    private $terminos;
+    private $rawContent;
 
     /**
      * @var string
@@ -54,33 +54,33 @@ class Teminos
     }
 
     /**
-     * Set terminos
+     * Set rawContent
      *
-     * @param string $terminos
+     * @param string $rawContent
      * @return Teminos
      */
-    public function setTerminos($terminos)
+    public function setRawContent($rawContent)
     {
-        $this->terminos = $terminos;
+        $this->rawContent = $rawContent;
 
         return $this;
     }
 
     /**
-     * Get terminos
+     * Get rawContent
      *
      * @return string 
      */
-    public function getTerminos()
+    public function getRawContent()
     {
-        return $this->terminos;
+        return $this->rawContent;
     }
 
     /**
      * Set contentFormatter
      *
      * @param string $contentFormatter
-     * @return ContentFormatter
+     * @return Teminos
      */
     public function setContentFormatter($contentFormatter)
     {
@@ -103,7 +103,7 @@ class Teminos
      * Set content
      *
      * @param string $content
-     * @return Content
+     * @return Teminos
      */
     public function setContent($content)
     {

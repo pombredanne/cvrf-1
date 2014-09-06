@@ -16,8 +16,20 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use \Symfony\Component\Security\Core\SecurityContextInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 
-class DocsAdmin extends Admin{
+class DocsAdmin extends Admin
+{
+    /**
+     * Security Context
+     * @var \Symfony\Component\Security\Core\SecurityContextInterface
+     */
+    protected $securityContext;
+
+    /**
+     * @var Pool
+     */
+    protected $formatterPool;
 
     //Listar los elementos que poseemos
     protected function configureListFields(ListMapper $mapper)
@@ -44,8 +56,7 @@ class DocsAdmin extends Admin{
             ->add('estado')
             ->add('titulo')
             ->add('autor')
-            ->add('pais')
-        ;
+            ->add('pais');
     }
 
     //formularios para crear y modificar
@@ -57,11 +68,19 @@ class DocsAdmin extends Admin{
                     'Presentado' => 'Presentado'), 'required' => true, 'empty_value' => 'Seleccione un Valor',
                     'empty_data'  => null, 'label' => 'Estado', ))
             ->add('titulo')
-            ->add('resumen')
+            ->add('resumen', 'sonata_formatter_type', array(
+                'event_dispatcher' => $mapper->getFormBuilder()->getEventDispatcher(),
+                'format_field'   => 'contentFormatter',
+                'source_field'   => 'rawContent',
+                'source_field_options'      => array(
+                    'attr' => array('class' => 'span10', 'rows' => 20)
+                ),
+                'target_field'   => 'resumen',
+                'listener'       => true,
+            ))
             ->add('autor')
             ->add('nivel')
             ->add('instituto')
-            //country esto es lo que hay que poner
             ->add('pais', 'country')
             ->add('anno', 'sonata_type_date_picker', array(
                 'datepicker_use_button' => false,
@@ -86,61 +105,75 @@ class DocsAdmin extends Admin{
         ;
     }
 
-    /**
-     * Security Context
-     * @var \Symfony\Component\Security\Core\SecurityContextInterface
-     */
-    protected $securityContext;
-
     public function setSecurityContext(SecurityContextInterface $securityContext)
     {
         $this->securityContext = $securityContext;
     }
 
-    // protected function configureRoutes(RouteCollection $collection)
+    // public function createQuery($context = 'list')
     // {
-    //     //remove all routes except those, you are using in admin and you can secure by yourself
-    //     $collection
-    //         ->clearExcept(array(
-    //             'show',
-    //             'create',
-    //             'list',
-    //             'edit',
-    //             'delete',
-    //         ))
-    //     ;
+    //     $queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
+
+    //     //if is logged admin, show all data
+    //     if ($this->securityContext->isGranted('ROLE_ADMIN_S')){
+    //         $queryBuilder->select('list')
+    //             ->from($this->getClass(),'list')
+    //         ;
+    //     } else if($this->securityContext->isGranted('ROLE_EDITOR')) {
+
+    //         $queryBuilder->select('list')
+    //             ->from($this->getClass(),'list')
+    //             ->where('list.estado=:estado')
+    //             ->setParameter('estado', 'Presentado')
+    //         ;
+    //     }else{
+    //         //for other users, show only data, which belongs to them
+    //         $adminId = $this->securityContext->getToken()->getUser()->getId();
+
+    //         $queryBuilder->select('list')
+    //             ->from($this->getClass(),'list')
+    //             ->where('list.user=:adminId and list.estado != :estado')
+				// ->setParameter('estado','Publicado')
+    //             ->setParameter('adminId', $adminId)
+    //         ;
+    //     }
+
+    //     $proxyQuery = new ProxyQuery($queryBuilder);
+    //     return $proxyQuery;
     // }
 
-    public function createQuery($context = 'list')
+    /**
+     * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool
+     *
+     * @return void
+     */
+    public function setPoolFormatter(FormatterPool $formatterPool)
     {
-        $queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
+        $this->formatterPool = $formatterPool;
+    }
 
-        //if is logged admin, show all data
-        if ($this->securityContext->isGranted('ROLE_ADMIN_S')){
-            $queryBuilder->select('list')
-                ->from($this->getClass(),'list')
-            ;
-        } else if($this->securityContext->isGranted('ROLE_EDITOR')) {
+    /**
+     * @return \Sonata\FormatterBundle\Formatter\Pool
+     */
+    public function getPoolFormatter()
+    {
+        return $this->formatterPool;
+    }
 
-            $queryBuilder->select('list')
-                ->from($this->getClass(),'list')
-                ->where('list.estado=:estado')
-                ->setParameter('estado', 'Presentado')
-            ;
-        }else{
-            //for other users, show only data, which belongs to them
-            $adminId = $this->securityContext->getToken()->getUser()->getId();
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($post)
+    {
+        $post->setResumen($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
+    }
 
-            $queryBuilder->select('list')
-                ->from($this->getClass(),'list')
-                ->where('list.user=:adminId and list.estado != :estado')
-				->setParameter('estado','Publicado')
-                ->setParameter('adminId', $adminId)
-            ;
-        }
-
-        $proxyQuery = new ProxyQuery($queryBuilder);
-        return $proxyQuery;
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($post)
+    {
+        $post->setResumen($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
     }
 
 } 

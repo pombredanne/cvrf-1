@@ -1,16 +1,9 @@
 services:
     fao.main.admin.docs:
-      class: Fao\MainBundle\Admin\DocsAdmin
-      tags:
-        - { name: sonata.admin, manager_type: orm, group: Documento, label: Documento }
-      arguments: [null,  Fao\MainBundle\Entity\Docs, FaoMainBundle:DocsAdmin]
-      calls:
-        - [setSecurityContext,[@security.context]]
-
-    fao.main.admin.terminos:
-      class: Fao\MainBundle\Admin\TeminosAdmin
-      tags:
-        - { name: sonata.admin, manager_type: orm, group: Terminos, label: Terminos }
-      arguments: [null,  Fao\MainBundle\Entity\Teminos, FaoMainBundle:TeminosAdmin]
-      calls:
-        - [setPoolFormatter,[@sonata.formatter.pool]]
+        class: Fao\MainBundle\Admin\DocsAdmin
+        tags:
+          - { name: sonata.admin, manager_type: orm, group: Documento, label: Documento }
+        arguments: [null,  Fao\MainBundle\Entity\Docs, FaoMainBundle:DocsAdmin]
+        calls:
+          - [setSecurityContext,[@security.context]]
+          - [setPoolFormatter,[@sonata.formatter.pool]]

@@ -49,8 +49,7 @@ class Docs
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Escriba el resumen del documento")
-     * @ORM\Column(name="resumen", type="text", length=10000)
+     * @ORM\Column(name="resumen", type="text")
      */
     private $resumen;
 
@@ -77,7 +76,7 @@ class Docs
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Escriba el pais de prosedencia")
+     * @Assert\NotBlank(message="Seleccione un pais")
      * @ORM\Column(name="pais", type="string", length=255)
      */
     private $pais;
@@ -99,6 +98,20 @@ class Docs
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"all"})
      */
     private $archivo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="raw_content", type="text")
+     */
+    private $rawContent;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contentFormatter", type="string")
+     */
+    private $contentFormatter;
 
     /**
      * Set estado
@@ -285,29 +298,6 @@ class Docs
     }
 
     /**
-     * Set fechaDePublicacion
-     *
-     * @param \DateTime $fechaDePublicacion
-     * @return Docs
-     */
-    public function setFechaDePublicacion($fechaDePublicacion = null)
-    {
-        $this->fechaDePublicacion = $fechaDePublicacion;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaDePublicacion
-     *
-     * @return \DateTime 
-     */
-    public function getFechaDePublicacion()
-    {
-        return $this->fechaDePublicacion;
-    }
-
-    /**
      * Set archivo
      *
      * @param \Application\Sonata\MediaBundle\Entity\Media $archivo
@@ -351,5 +341,51 @@ class Docs
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set rawContent
+     *
+     * @param string $rawContent
+     * @return Docs
+     */
+    public function setRawContent($rawContent)
+    {
+        $this->rawContent = $rawContent;
+
+        return $this;
+    }
+
+    /**
+     * Get rawContent
+     *
+     * @return string
+     */
+    public function getRawContent()
+    {
+        return $this->rawContent;
+    }
+
+    /**
+     * Set contentFormatter
+     *
+     * @param string $contentFormatter
+     * @return Docs
+     */
+    public function setContentFormatter($contentFormatter)
+    {
+        $this->contentFormatter = $contentFormatter;
+
+        return $this;
+    }
+
+    /**
+     * Get contentFormatter
+     *
+     * @return string
+     */
+    public function getContentFormatter()
+    {
+        return $this->contentFormatter;
     }
 }
