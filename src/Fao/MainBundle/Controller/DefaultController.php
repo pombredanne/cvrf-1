@@ -23,8 +23,7 @@ class DefaultController extends Controller
 
     public function terminosAction()
     {
-        $terminos = $this->getDoctrine()->getRepository('FaoMainBundle:Teminos')->find(2);
-        return $this->render('FaoMainBundle:Default:terminos.html.twig', array( 'terminos' => $terminos));
+        return $this->render('FaoMainBundle:Default:terminos.html.twig');
     }
 
     public function searchAction(Request $request)
