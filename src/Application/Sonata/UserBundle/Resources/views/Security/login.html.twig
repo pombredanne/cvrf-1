@@ -35,10 +35,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-
-                    <button type="submit" id="_submit" name="_submit" class="btn btn-success pull-right">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }} </button>
-                    <a class="btn btn-success pull-right">Registarse </a>
+                <div class="col-sm-offset-10">
+                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-success">Registrarse</a>
+                    <button type="submit" id="_submit" name="_submit" class="btn btn-success">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }} </button>
                 </div>
             </div>
         </form>
