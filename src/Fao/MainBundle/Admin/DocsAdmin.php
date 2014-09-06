@@ -45,6 +45,7 @@ class DocsAdmin extends Admin{
             ->add('titulo')
             ->add('autor')
             ->add('pais')
+
         ;
     }
 
@@ -62,9 +63,11 @@ class DocsAdmin extends Admin{
             ->add('nivel')
             ->add('instituto')
             //country esto es lo que hay que poner
-            ->add('pais', null, array('label' => "Pais"))
-            ->add('anno', 'date', array('label' => 'Anno', 'format' => 'MM/dd/yyyy',
-                'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
+            ->add('pais', 'country')
+            ->add('anno', 'sonata_type_date_picker', array(
+                'datepicker_use_button' => false,
+                'dp_use_current'        => false,
+            ))
             ->add('archivo', 'sonata_type_model_list',array(),array( 'link_parameters' => array('context' => 'default','provider' => 'sonata.media.provider.file')))
         ;
     }
@@ -80,7 +83,7 @@ class DocsAdmin extends Admin{
             ->add('instituto')
             ->add('pais')
             ->add('anno')
-            ->add('fechaDePublicacion')
+//            ->add('fechaDePublicacion')
             ->add('archivo')
             ->add('user')
         ;
