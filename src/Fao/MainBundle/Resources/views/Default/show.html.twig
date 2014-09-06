@@ -1,0 +1,12 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+    <h2>{{ documento.titulo }}</a></h2>
+
+    <p>{{ documento.resumen| truncate(150) }}</p>
+
+    <div>
+        <a  href="{{ path('sonata_media_download', {'id': documento.archivo|sonata_urlsafeid }) }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
+    </div>
+
+{% endblock %}

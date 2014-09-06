@@ -11,6 +11,10 @@ fao_main_search:
     defaults: { _controller: FaoMainBundle:Default:search }
     methods:  [GET, HEAD]
 
+fao_main_show:
+    pattern: /{id}/show
+    defaults: { _controller: FaoMainBundle:Default:show }
+
 
 #fao_main_docs:
 #    pattern:  /documents
