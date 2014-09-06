@@ -340,7 +340,7 @@ body {
     /* Negative indent footer by its height */
     margin: 0 auto -60px;
     /* Pad bottom by footer height */
-    padding: 0 0 60px;
+    padding: 20px 0 60px;
 }
 
 /* Set the fixed height of the footer here */
@@ -375,4 +375,19 @@ body {
     text-decoration: none;
 }
 
+a {
+    color: #46a642;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #46a642;
+    text-decoration: underline;
+}
+
+.jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    margin-top: -10px;
+}
 
