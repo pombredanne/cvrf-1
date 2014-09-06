@@ -40,6 +40,25 @@
                         {% if not is_granted('ROLE_USER') %}
                             <li><a href="{{ path('fos_user_registration_register') }}">Registrarse</a></li>
                             <li><a href="{{ path('fos_user_security_login') }}">Entrar</a></li>
+                            <li class="dropdown">
+                                <a id="navLogin" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Login
+                                </a>
+                                <div class="dropdown-menu" style="padding:17px; background-color: #008000">
+                                    <form id="formLogin" class="form">
+                                        <label>
+                                            Login
+                                        </label>
+                                        <input id="token" type="hidden" value="OIu1K1slPvBbdNB8Yd9UuyrT5uRS252tnnns4=" name="_csrf"/>
+                                        <input id="username" type="text" required="" title="Enter your username" data-valid-min="6" pattern="^[a-z,A-Z,0-9,_]{6,15}$" placeholder="Username" name="username"/>
+                                        <input id="password" type="password" required="" title="Enter your password" placeholder="Password" name="password"/>
+                                        </br>
+                                        <button id="btnLogin" class="btn" type="button">
+                                            Login
+                                        </button>
+                                    </form>
+                                </div>
+                            </li>
                         {% else %}
                             <li><a href="{{ path('fos_user_security_logout') }}">Salir</a></li>
                         {% endif %}
