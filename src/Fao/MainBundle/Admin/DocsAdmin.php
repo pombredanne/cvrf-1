@@ -66,7 +66,6 @@ class DocsAdmin extends Admin{
             ->add('pais', 'country')
             ->add('anno', 'sonata_type_date_picker', array(
                 'datepicker_use_button' => false,
-                'dp_use_current'        => false,
             ))
             ->add('archivo', 'sonata_type_model_list',array(),array( 'link_parameters' => array('context' => 'default','provider' => 'sonata.media.provider.file')))
         ;

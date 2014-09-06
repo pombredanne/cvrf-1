@@ -84,7 +84,8 @@ class Docs
 
     /**
      * @var \DateTime
-     * @Assert\Date(message="Introdusca una fecha")
+     * @Assert\Date(message="Seleccione una fecha")
+     * @Assert\NotBlank(message="Seleccione una fecha")
      * @ORM\Column(name="anno", type="date")
      */
     private $anno;
