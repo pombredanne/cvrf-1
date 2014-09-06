@@ -25,18 +25,14 @@
                 </div>
                 <div class="collapse navbar-collapse">
 
-                    <div id="sb-search" class="sb-search busqueda">
-                        <form action="{{ path('fao_main_search') }}" method="get">
-                            <input class="sb-search-input" placeholder="Buscar" type="text" value="" name="q" id="search">
-                            <input class="sb-search-submit" type="submit" value="">
-                            <span class="sb-icon-search"></span>
-                        </form>
-                    </div>
+
 
                     <ul class="nav navbar-nav">
                         <li><a href="#">Categor&iacute;as</a></li>
                         <li><a href="{{ path('fao_main_terminos') }}">T&eacute;rminos</a></li>
                         <li><a href="http://www.fao.org/forestry/material-educativo/base-de-datos/bd/es/">FAO</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
                         {% if not is_granted('ROLE_USER') %}
                             <li><a href="{{ path('fos_user_registration_register') }}">Registrarse</a></li>
                             <li><a href="{{ path('fos_user_security_login') }}">Entrar</a></li>
@@ -63,6 +59,13 @@
                             <li><a href="{{ path('fos_user_security_logout') }}">Salir</a></li>
                         {% endif %}
                     </ul>
+                    <div id="sb-search" class="sb-search busqueda">
+                        <form action="{{ path('fao_main_search') }}" method="get">
+                            <input class="sb-search-input" placeholder="Buscar" type="text" value="" name="q" id="search">
+                            <input class="sb-search-submit" type="submit" value="">
+                            <span class="sb-icon-search"></span>
+                        </form>
+                    </div>
 
                 </div><!--/.nav-collapse -->
             </div>
