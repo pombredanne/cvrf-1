@@ -91,13 +91,6 @@ class Docs
     private $anno;
 
     /**
-     * @var \DateTime
-     * @Assert\NotBlank(message="Ponga la fecha del documento")
-     * @ORM\Column(name="fecha_de_publicacion", type="date", nullable = true)
-     */
-    private $fechaDePublicacion;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      */
     private $user;
