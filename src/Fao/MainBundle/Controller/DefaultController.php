@@ -17,8 +17,22 @@ class DefaultController extends Controller
        // $medias = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')->findBy(array( 'context' => 'default'));
 
         //return $this->render('FaoMainBundle:Default:docs.html.twig', array('medias' => $medias));
-        $documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'Publicado'));
-        return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
+
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT d FROM FaoMainBundle:Docs d WHERE d.estado = :estado";
+        $query = $em->createQuery($dql);
+        $query->setParameter('estado', 'Publicado');
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            12/*limit per page*/
+        );
+
+        //$documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'Publicado'));
+        //return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
+        return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $pagination));
     }
 
     public function terminosAction()
