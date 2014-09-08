@@ -11,42 +11,13 @@
                 forestal cubano entre todos los actores participantes".
             </p>
         {% endblock %}
-        {#<div class="row">#}
-        {#<div class="col-md-3 col-sm-3">#}
-        {#<h3>Category Name</h3>#}
-        {#<ul>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#</ul>#}
-        {#</div>#}
-        {#<div class="col-md-3 col-sm-3">#}
-        {#<h3>Category Name</h3>#}
-        {#<ul>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#</ul>#}
-        {#</div>#}
-        {#<div class="col-md-3 col-sm-3">#}
-        {#<h3>Category Name</h3>#}
-        {#<ul>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#<li><a href="#">Item number one</a></li>#}
-        {#</ul>#}
-        {#</div>#}
-        {#</div>#}
     </div>
 </div>
 {% endblock %}
 
 {% block content %}
     {% for documento in documentos %}
-        {% if documento.archivo != null %}
+        {% if documento.fileName != null %}
         {% if loop.first %}
             <div class="row">
         {% elseif loop.index > 2 and (loop.index -1) is divisible by(3) %}
@@ -59,7 +30,7 @@
 
             <p>{{ documento.resumen| truncate(150) }}</p>
             <div>
-                <a  href="{{ path('sonata_media_download', {'id': documento.archivo|sonata_urlsafeid }) }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
+                <a  href="{{ vich_uploader_asset(documento, 'document_file') }}" alt="{{ documento.fileName }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
             </div>
 
         </div>

@@ -71,7 +71,7 @@ class DocsAdmin extends Admin
 
         $mapper
             ->add('estado', 'choice',
-                array('choices' => $status, 'required' => true, 'empty_value' => 'Seleccione un Valor',
+                array('choices' => $status, 'required' => true, 'empty_value' => 'Seleccione un estado',
                     'empty_data'  => null, 'label' => 'Estado', ))
             ->add('titulo')
             ->add('resumen', 'sonata_formatter_type', array(
