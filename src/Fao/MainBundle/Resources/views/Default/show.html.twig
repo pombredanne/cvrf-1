@@ -3,7 +3,7 @@
 {% block content %}
     <h2>{{ documento.titulo }}</a></h2>
 
-    <p>{{ documento.resumen| truncate(150) }}</p>
+    <p>{{ documento.resumen| truncate(150)| raw }}</p>
 
     <div>
         <a  href="{{ vich_uploader_asset(documento, 'document_file') }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
