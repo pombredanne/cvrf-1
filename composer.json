@@ -87,7 +87,6 @@
         "hwi/oauth-bundle": "0.4.*@dev",
         "nelmio/api-doc-bundle": "2.7.*@dev",
         "liuggio/ExcelBundle": "2.0.*@dev",
-        "igorw/file-serve-bundle": "1.0.*@dev",
         "vich/uploader-bundle": "1.0.*@dev"
 
     },

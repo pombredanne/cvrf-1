@@ -7,6 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Blameable\Traits\BlameableEntity;
 
 /**
  * Docs
@@ -107,7 +109,7 @@ class Docs
     /**
      * @Vich\UploadableField(mapping="document_file", fileNameProperty="fileName")
      *
-     * @var File file
+     * @var File $flie
      */
     private $file;
 
@@ -143,6 +145,21 @@ class Docs
      */
     private $contentFormatter;
 
+//    /**
+//     * @var datetime $created
+//     *
+//     * @Gedmo\Timestampable(on="create")
+//     * @ORM\Column(type="datetime")
+//     */
+//    private $created;
+
+    /**
+     * @var datetime $updated
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
     /**
      * @var string $createdBy
      *
@@ -160,12 +177,14 @@ class Docs
     private $updatedBy;
 
     /**
-     * @var datetime $contentChangedBy
-     *
-     * @ORM\Column(name="content_changed_by", type="string", nullable=true)
-     * @Gedmo\Timestampable(on="change", field={"titulo", "resumen", "estado", "archivo"})
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\ClassificationBundle\Entity\Media")
      */
-    private $contentChangedBy;
+    private $clasification;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\ClassificationBundle\Entity\Tag")
+     */
+    private $tags;
 
     /**
      * Set estado
@@ -413,19 +432,24 @@ class Docs
         );
     }
 
-    public function getCreatedBy()
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     */
+    public function setFile(File $file)
     {
-        return $this->createdBy;
-    }
+        $this->file = $file;
 
-    public function getUpdatedBy()
-    {
-        return $this->updatedBy;
-    }
-
-    public function getContentChangedBy()
-    {
-        return $this->contentChangedBy;
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updated = new \DateTime('now');
+        }
     }
 
     /**
@@ -450,6 +474,26 @@ class Docs
     public function getFileName()
     {
         return $this->fileName;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 
 }

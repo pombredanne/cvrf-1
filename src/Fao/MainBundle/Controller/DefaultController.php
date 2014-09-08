@@ -17,12 +17,12 @@ class DefaultController extends Controller
        // $medias = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')->findBy(array( 'context' => 'default'));
 
         //return $this->render('FaoMainBundle:Default:docs.html.twig', array('medias' => $medias));
-<<<<<<< HEAD
+
 
         $em = $this->getDoctrine()->getManager();
         $dql = "SELECT d FROM FaoMainBundle:Docs d WHERE d.estado = :estado";
         $query = $em->createQuery($dql);
-        $query->setParameter('estado', 'Publicado');
+        $query->setParameter('estado', 'published');
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -34,10 +34,10 @@ class DefaultController extends Controller
         //$documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'Publicado'));
         //return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
         return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $pagination));
-=======
-        $documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'published'));
-        return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
->>>>>>> 3dda7e4366f4245b151aafa410b811c3defa499a
+
+        //$documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'published'));
+        //return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
+
     }
 
     public function terminosAction()

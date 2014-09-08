@@ -56,7 +56,8 @@ class DocsAdmin extends Admin
             ->add('estado')
             ->add('titulo')
             ->add('autor')
-            ->add('pais');
+            ->add('pais')
+            ->add('clasification');
     }
 
     protected function configureFormFields(FormMapper $mapper)
@@ -74,6 +75,8 @@ class DocsAdmin extends Admin
                 array('choices' => $status, 'required' => true, 'empty_value' => 'Seleccione un estado',
                     'empty_data'  => null, 'label' => 'Estado', ))
             ->add('titulo')
+            ->add('clasification')
+            ->add('tags')
             ->add('resumen', 'sonata_formatter_type', array(
                 'event_dispatcher' => $mapper->getFormBuilder()->getEventDispatcher(),
                 'format_field'   => 'contentFormatter',
@@ -107,6 +110,8 @@ class DocsAdmin extends Admin
         $showMapper
             ->add('estado')
             ->add('titulo')
+            ->add('clasification')
+            ->add('tags')
             ->add('resumen')
             ->add('autor')
             ->add('nivel')

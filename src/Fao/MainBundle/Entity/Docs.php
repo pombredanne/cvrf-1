@@ -177,6 +177,16 @@ class Docs
     private $updatedBy;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\ClassificationBundle\Entity\Category")
+     */
+    private $clasification;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\ClassificationBundle\Entity\Tag")
+     */
+    private $tags;
+
+    /**
      * Set estado
      *
      * @param string $estado
@@ -486,4 +496,89 @@ class Docs
         return $this->updatedBy;
     }
 
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Docs
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param string $createdBy
+     * @return Docs
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Set updatedBy
+     *
+     * @param string $updatedBy
+     * @return Docs
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Set clasification
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $clasification
+     * @return Docs
+     */
+    public function setClasification(\Application\Sonata\ClassificationBundle\Entity\Category $clasification = null)
+    {
+        $this->clasification = $clasification;
+
+        return $this;
+    }
+
+    /**
+     * Get clasification
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    public function getClasification()
+    {
+        return $this->clasification;
+    }
+
+    /**
+     * Set tags
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Tag $tags
+     * @return Docs
+     */
+    public function setTags(\Application\Sonata\ClassificationBundle\Entity\Tag $tags = null)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Tag 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
 }
