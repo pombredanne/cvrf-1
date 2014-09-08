@@ -4,15 +4,39 @@ namespace Fao\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Blameable\Traits\BlameableEntity;
 
 /**
  * Docs
  *
  * @ORM\Table(name="docs")
  * @ORM\Entity(repositoryClass="Fao\MainBundle\Entity\DocsRepository")
+ * @Vich\Uploadable
  */
 class Docs
 {
+    const STATUS_DRAFT = 'draft';
+    const STATUS_PRESENTED = 'presented';
+    const STATUS_PUBLISHED = 'published';
+    const STATUS_UNPUBLISHED = 'unpublished';
+    const STATUS_DELETED = 'deleted';
+
+    /**
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
+
+    /**
+     * Hook blameable behavior
+     * updates createdBy, updatedBy fields
+     */
+    use BlameableEntity;
+
     /**
      * @var integer
      *
@@ -36,7 +60,7 @@ class Docs
     /**
      * @var string
      * @Assert\NotBlank(message="Seleccione el estado del documento")
-     * @ORM\Column(name="estado", type="string", length=255)
+     * @ORM\Column(name="estado", type="string", length=32)
      */
     private $estado;
 
@@ -89,15 +113,35 @@ class Docs
      */
     private $anno;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
-     */
-    private $user;
+//    /**
+//     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, orphanRemoval=true)
+//     */
+//    private $archivo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"all"})
+     * @Vich\UploadableField(mapping="document_file", fileNameProperty="fileName")
+     *
+     * @var File $flie
      */
-    private $archivo;
+    private $file;
+
+    /**
+     * @ORM\Column(type="string", length=255, name="file_name")
+     *
+     * @var string $fileName
+     */
+    private $fileName;
+
+//    /**
+//     * @ORM\Column(name="mime_type", type="string")
+//     */
+//    private $mimeType;
+//
+//    /**
+//     * @ORM\Column(name="size", type="decimal")
+//     * @Gedmo\UploadableFileSize
+//     */
+//    private $size;
 
     /**
      * @var string
@@ -298,52 +342,6 @@ class Docs
     }
 
     /**
-     * Set archivo
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $archivo
-     * @return Docs
-     */
-    public function setArchivo(\Application\Sonata\MediaBundle\Entity\Media $archivo = null)
-    {
-        $this->archivo = $archivo;
-
-        return $this;
-    }
-
-    /**
-     * Get archivo
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getArchivo()
-    {
-        return $this->archivo;
-    }
-
-    /**
-     * Set archivo
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $user
-     * @return Docs
-     */
-    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
      * Set rawContent
      *
      * @param string $rawContent
@@ -388,4 +386,65 @@ class Docs
     {
         return $this->contentFormatter;
     }
+
+    /**
+     * Returns the status type list
+     *
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return array(
+            self::STATUS_DRAFT => 'Borrador',
+            self::STATUS_PRESENTED => 'Presentado',
+            self::STATUS_PUBLISHED => 'Publicado',
+            self::STATUS_UNPUBLISHED => 'Despublicado',
+            self::STATUS_DELETED => 'Eliminado',
+        );
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     */
+    public function setFile(File $file)
+    {
+        $this->file = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param string $fileName
+     */
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
 }

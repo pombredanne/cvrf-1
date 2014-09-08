@@ -86,6 +86,8 @@ class AppKernel extends Kernel
             new Fao\MainBundle\FaoMainBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new Lexik\Bundle\WorkflowBundle\LexikWorkflowBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

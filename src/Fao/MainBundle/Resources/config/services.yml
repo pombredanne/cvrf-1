@@ -2,8 +2,8 @@ parameters:
 #    fao_main.example.class: Fao\MainBundle\Example
 
 services:
-        fao.mainbundle.security.ownervoter:
-            class: Fao\MainBundle\Security\OwnerVoter
-            arguments: ['@doctrine.orm.entity_manager', '@service_container']
-            tags:
-              - {name: security.voter}
+#    fao.mainbundle.security.ownervoter:
+#        class: Fao\MainBundle\Security\OwnerVoter
+#        arguments: ['@doctrine.orm.entity_manager', '@service_container']
+#        tags:
+#          - {name: security.voter}

@@ -20,10 +20,7 @@ sonata_media:
                 # - sonata.media.provider.image
                 - sonata.media.provider.file
                 # - sonata.media.provider.vimeo
-
-            formats:
-                small: { width: 100, quality: 100}
-                big:   { width: 820 , quality: 100}
+            formats: ~
 
         news:
             download:
@@ -62,11 +59,10 @@ sonata_media:
             filesystem: sonata.media.filesystem.local
             thumbnail:  sonata.media.thumbnail.format
             allowed_extensions: ['pdf', 'txt', 'rtf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pttx', 'odt', 'odg', 'odp', 'ods', 'odc', 'odf', 'odb', 'csv', 'xml']
-            allowed_mime_types: ['application/pdf', 'application/x-pdf', 'application/rtf', 'text/html', 'text/rtf', 'text/plain']
 
     pixlr:
         enabled:  false
-        referrer: Demo - Sonata Project
+        referrer: CVRF - Comunidad Virtual de Recursos Forestales
 
     resizer:
         simple:

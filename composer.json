@@ -61,13 +61,12 @@
         "sonata-project/timeline-bundle": "~2.2@dev",
         "sonata-project/classification-bundle": "~2.2",
         "sonata-project/datagrid-bundle": "~2.2@dev",
-
+        "sonata-project/comment-bundle": "2.2.*@dev",
 
         "friendsofsymfony/rest-bundle": "1.2.*@dev",
         "friendsofsymfony/elastica-bundle": "3.0.*@dev",
         "friendsofsymfony/jsrouting-bundle": "2.0.*@dev",
         "friendsofsymfony/oauth-server-bundle": "1.4.*@dev",
-        "friendsofsymfony/comment-bundle": "2.0.*@dev",
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
@@ -87,7 +86,9 @@
         "suncat/admin-page-board-bundle": "dev-master",
         "hwi/oauth-bundle": "0.4.*@dev",
         "nelmio/api-doc-bundle": "2.7.*@dev",
-        "liuggio/ExcelBundle": "2.0.*@dev"
+        "liuggio/ExcelBundle": "2.0.*@dev",
+        "igorw/file-serve-bundle": "1.0.*@dev",
+        "vich/uploader-bundle": "1.0.*@dev"
 
     },
 

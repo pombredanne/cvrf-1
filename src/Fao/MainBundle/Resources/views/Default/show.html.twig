@@ -6,7 +6,7 @@
     <p>{{ documento.resumen| truncate(150) }}</p>
 
     <div>
-        <a  href="{{ path('sonata_media_download', {'id': documento.archivo|sonata_urlsafeid }) }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
+        <a  href="{{ vich_uploader_asset(documento, 'document_file') }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
     </div>
 
 {% endblock %}
