@@ -97,7 +97,6 @@ class DocsAdmin extends Admin
             ))
             ->add('file', 'vich_file', array(
                 'label'         => ' ',
-                'required'      => false,
                 'mapping'       => 'document_file', // mandatory
             ))
         ;
