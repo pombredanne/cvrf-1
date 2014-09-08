@@ -26,18 +26,6 @@ class Docs
     const STATUS_DELETED = 'deleted';
 
     /**
-     * Hook timestampable behavior
-     * updates createdAt, updatedAt fields
-     */
-    use TimestampableEntity;
-
-    /**
-     * Hook blameable behavior
-     * updates createdBy, updatedBy fields
-     */
-    use BlameableEntity;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -156,6 +144,37 @@ class Docs
      * @ORM\Column(name="contentFormatter", type="string")
      */
     private $contentFormatter;
+
+//    /**
+//     * @var datetime $created
+//     *
+//     * @Gedmo\Timestampable(on="create")
+//     * @ORM\Column(type="datetime")
+//     */
+//    private $created;
+
+    /**
+     * @var datetime $updated
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    private $createdBy;
+
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    private $updatedBy;
 
     /**
      * Set estado
@@ -419,7 +438,7 @@ class Docs
         if ($file) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
+            $this->updated = new \DateTime('now');
         }
     }
 
@@ -445,6 +464,26 @@ class Docs
     public function getFileName()
     {
         return $this->fileName;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 
 }
