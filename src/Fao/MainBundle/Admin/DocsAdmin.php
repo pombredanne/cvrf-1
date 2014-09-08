@@ -14,7 +14,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
-use \Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 
@@ -39,7 +39,7 @@ class DocsAdmin extends Admin
             ->add('estado')
             ->add('autor')
             ->add('anno')
-            ->add('archivo')
+            ->add('fileName')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -59,13 +59,19 @@ class DocsAdmin extends Admin
             ->add('pais');
     }
 
-    //formularios para crear y modificar
     protected function configureFormFields(FormMapper $mapper)
     {
+        $documentClass = $this->getClass();
+        $status = $documentClass::getStatusList();
+
+        if (!$this->securityContext->isGranted('ROLE_EDITOR'))
+        {
+            unset($status['published']);
+        }
+
         $mapper
             ->add('estado', 'choice',
-                array('choices' => array('Borrador' => 'Borrador',
-                    'Presentado' => 'Presentado'), 'required' => true, 'empty_value' => 'Seleccione un Valor',
+                array('choices' => $status, 'required' => true, 'empty_value' => 'Seleccione un Valor',
                     'empty_data'  => null, 'label' => 'Estado', ))
             ->add('titulo')
             ->add('resumen', 'sonata_formatter_type', array(
@@ -79,13 +85,21 @@ class DocsAdmin extends Admin
                 'listener'       => true,
             ))
             ->add('autor')
-            ->add('nivel')
-            ->add('instituto')
+            ->add('nivel', null, array(
+                'required'      => false,
+            ))
+            ->add('instituto', null, array(
+                'required'      => false,
+            ))
             ->add('pais', 'country')
             ->add('anno', 'sonata_type_date_picker', array(
                 'datepicker_use_button' => false,
             ))
-            ->add('archivo', 'sonata_type_model_list',array(),array( 'link_parameters' => array('context' => 'default','provider' => 'sonata.media.provider.file')))
+            ->add('file', 'vich_file', array(
+                'label'         => ' ',
+                'required'      => false,
+                'mapping'       => 'document_file', // mandatory
+            ))
         ;
     }
 
@@ -100,8 +114,7 @@ class DocsAdmin extends Admin
             ->add('instituto')
             ->add('pais')
             ->add('anno')
-            ->add('archivo')
-            ->add('user')
+            ->add('fileName')
         ;
     }
 
@@ -110,37 +123,29 @@ class DocsAdmin extends Admin
         $this->securityContext = $securityContext;
     }
 
-    // public function createQuery($context = 'list')
-    // {
-    //     $queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
 
-    //     //if is logged admin, show all data
-    //     if ($this->securityContext->isGranted('ROLE_ADMIN_S')){
-    //         $queryBuilder->select('list')
-    //             ->from($this->getClass(),'list')
-    //         ;
-    //     } else if($this->securityContext->isGranted('ROLE_EDITOR')) {
+        if(!$this->securityContext->isGranted('ROLE_SUPER_ADMIN'))
+        {
+             $query
+                 ->andWhere('o.estado=:estado')
+                 ->setParameter('estado', 'presented')
+            ;
+        }
+        if (!$this->securityContext->isGranted('ROLE_EDITOR'))
+        {
+            $query
+                ->andWhere('o.estado != :published')
+                ->andWhere('o.createdBy = :user')
+                ->setParameter('published','published')
+                ->setParameter('user', $this->securityContext->getToken()->getUser()->getUsername())
+            ;
+        }
 
-    //         $queryBuilder->select('list')
-    //             ->from($this->getClass(),'list')
-    //             ->where('list.estado=:estado')
-    //             ->setParameter('estado', 'Presentado')
-    //         ;
-    //     }else{
-    //         //for other users, show only data, which belongs to them
-    //         $adminId = $this->securityContext->getToken()->getUser()->getId();
-
-    //         $queryBuilder->select('list')
-    //             ->from($this->getClass(),'list')
-    //             ->where('list.user=:adminId and list.estado != :estado')
-				// ->setParameter('estado','Publicado')
-    //             ->setParameter('adminId', $adminId)
-    //         ;
-    //     }
-
-    //     $proxyQuery = new ProxyQuery($queryBuilder);
-    //     return $proxyQuery;
-    // }
+        return $query;
+    }
 
     /**
      * @param \Sonata\FormatterBundle\Formatter\Pool $formatterPool

@@ -3,15 +3,26 @@
 namespace Fao\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Docs
  *
- * @ORM\Table()
+ * @ORM\Table(name="docs")
  * @ORM\Entity(repositoryClass="Fao\MainBundle\Entity\DocsRepository")
+ * @Vich\Uploadable
  */
 class Docs
 {
+    const STATUS_DRAFT = 'draft';
+    const STATUS_PRESENTED = 'presented';
+    const STATUS_PUBLISHED = 'published';
+    const STATUS_UNPUBLISHED = 'unpublished';
+    const STATUS_DELETED = 'deleted';
+
     /**
      * @var integer
      *
@@ -34,69 +45,411 @@ class Docs
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="estado", type="string", length=255)
+     * @Assert\NotBlank(message="Seleccione el estado del documento")
+     * @ORM\Column(name="estado", type="string", length=32)
      */
     private $estado;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el titulo del documento")
      * @ORM\Column(name="titulo", type="string", length=255)
      */
     private $titulo;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="resumen", type="text", length=1024)
+     * @ORM\Column(name="resumen", type="text")
      */
     private $resumen;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el autor del documento")
      * @ORM\Column(name="autor", type="string", length=150)
      */
     private $autor;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el nivel del docuemnto")
      * @ORM\Column(name="nivel", type="string", length=255)
      */
     private $nivel;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Escriba el nombre del instituto al que pertenece")
      * @ORM\Column(name="instituto", type="string", length=255)
      */
     private $instituto;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Seleccione un pais")
      * @ORM\Column(name="pais", type="string", length=255)
      */
     private $pais;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\Date(message="Seleccione una fecha")
+     * @Assert\NotBlank(message="Seleccione una fecha")
      * @ORM\Column(name="anno", type="date")
      */
     private $anno;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_de_publicacion", type="date")
-     */
-    private $fechaDePublicacion;
+//    /**
+//     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, orphanRemoval=true)
+//     */
+//    private $archivo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @Vich\UploadableField(mapping="document_file", fileNameProperty="fileName")
+     *
+     * @var File file
      */
-    private $archivo;
+    private $file;
+
+    /**
+     * @ORM\Column(type="string", length=255, name="file_name")
+     *
+     * @var string $fileName
+     */
+    private $fileName;
+
+//    /**
+//     * @ORM\Column(name="mime_type", type="string")
+//     */
+//    private $mimeType;
+//
+//    /**
+//     * @ORM\Column(name="size", type="decimal")
+//     * @Gedmo\UploadableFileSize
+//     */
+//    private $size;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="raw_content", type="text")
+     */
+    private $rawContent;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contentFormatter", type="string")
+     */
+    private $contentFormatter;
+
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(type="string")
+     */
+    private $createdBy;
+
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(type="string")
+     */
+    private $updatedBy;
+
+    /**
+     * @var datetime $contentChangedBy
+     *
+     * @ORM\Column(name="content_changed_by", type="string", nullable=true)
+     * @Gedmo\Timestampable(on="change", field={"titulo", "resumen", "estado", "archivo"})
+     */
+    private $contentChangedBy;
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     * @return Docs
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set titulo
+     *
+     * @param string $titulo
+     * @return Docs
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    /**
+     * Get titulo
+     *
+     * @return string 
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * Set resumen
+     *
+     * @param string $resumen
+     * @return Docs
+     */
+    public function setResumen($resumen)
+    {
+        $this->resumen = $resumen;
+
+        return $this;
+    }
+
+    /**
+     * Get resumen
+     *
+     * @return string 
+     */
+    public function getResumen()
+    {
+        return $this->resumen;
+    }
+
+    /**
+     * Set autor
+     *
+     * @param string $autor
+     * @return Docs
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return string 
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    /**
+     * Set nivel
+     *
+     * @param string $nivel
+     * @return Docs
+     */
+    public function setNivel($nivel)
+    {
+        $this->nivel = $nivel;
+
+        return $this;
+    }
+
+    /**
+     * Get nivel
+     *
+     * @return string 
+     */
+    public function getNivel()
+    {
+        return $this->nivel;
+    }
+
+    /**
+     * Set instituto
+     *
+     * @param string $instituto
+     * @return Docs
+     */
+    public function setInstituto($instituto)
+    {
+        $this->instituto = $instituto;
+
+        return $this;
+    }
+
+    /**
+     * Get instituto
+     *
+     * @return string 
+     */
+    public function getInstituto()
+    {
+        return $this->instituto;
+    }
+
+    /**
+     * Set pais
+     *
+     * @param string $pais
+     * @return Docs
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Get pais
+     *
+     * @return string 
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * Set anno
+     *
+     * @param \DateTime $anno
+     * @return Docs
+     */
+    public function setAnno($anno)
+    {
+        $this->anno = $anno;
+
+        return $this;
+    }
+
+    /**
+     * Get anno
+     *
+     * @return \DateTime 
+     */
+    public function getAnno()
+    {
+        return $this->anno;
+    }
+
+    /**
+     * Set rawContent
+     *
+     * @param string $rawContent
+     * @return Docs
+     */
+    public function setRawContent($rawContent)
+    {
+        $this->rawContent = $rawContent;
+
+        return $this;
+    }
+
+    /**
+     * Get rawContent
+     *
+     * @return string
+     */
+    public function getRawContent()
+    {
+        return $this->rawContent;
+    }
+
+    /**
+     * Set contentFormatter
+     *
+     * @param string $contentFormatter
+     * @return Docs
+     */
+    public function setContentFormatter($contentFormatter)
+    {
+        $this->contentFormatter = $contentFormatter;
+
+        return $this;
+    }
+
+    /**
+     * Get contentFormatter
+     *
+     * @return string
+     */
+    public function getContentFormatter()
+    {
+        return $this->contentFormatter;
+    }
+
+    /**
+     * Returns the status type list
+     *
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return array(
+            self::STATUS_DRAFT => 'Borrador',
+            self::STATUS_PRESENTED => 'Presentado',
+            self::STATUS_PUBLISHED => 'Publicado',
+            self::STATUS_UNPUBLISHED => 'Despublicado',
+            self::STATUS_DELETED => 'Eliminado',
+        );
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    public function getContentChangedBy()
+    {
+        return $this->contentChangedBy;
+    }
+
+    /**
+     * @return File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param string $fileName
+     */
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
 }

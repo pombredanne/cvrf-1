@@ -2,11 +2,11 @@
 umask(0002);
 require_once __DIR__.'/../app/bootstrap.php.cache';
 require_once __DIR__.'/../app/AppKernel.php';
-//require_once __DIR__.'/../app/AppCache.php';
+require_once __DIR__.'/../app/AppCache.php';
 
 //$kernel = new AppCache(new AppKernel('prod', false));
-$kernel = new AppKernel('prod', true);
-//$kernel->loadClassCache();
+$kernel = new AppKernel('prod', false);
+$kernel->loadClassCache();
 
 // if you want to use the SonataPageBundle with multisite
 // using different relative paths, you must change the request
@@ -15,4 +15,7 @@ $kernel = new AppKernel('prod', true);
 
 use Symfony\Component\HttpFoundation\Request;
 
-$kernel->handle(Request::createFromGlobals())->send();
+$request = Request::createFromGlobals();
+$response = $kernel->handle($request);
+$response->send();
+$kernel->terminate($request, $response);

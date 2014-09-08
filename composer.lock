@@ -1,10 +1,9 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
-        "This file is @generated automatically"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4be7e8d5e44895cbc062833972ebb77f",
+    "hash": "1c271402ac9880b789995ad281de3d03",
     "packages": [
         {
             "name": "craue/formflow-bundle",
@@ -1089,17 +1088,17 @@
         },
         {
             "name": "friendsofsymfony/comment-bundle",
-            "version": "dev-master",
+            "version": "v2.0.6",
             "target-dir": "FOS/CommentBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSCommentBundle.git",
-                "reference": "2363b47b6a6fe967a89f323253be9bd3a7508653"
+                "reference": "65552ea5142e296d18b3c5b098bf424794726993"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSCommentBundle/zipball/2363b47b6a6fe967a89f323253be9bd3a7508653",
-                "reference": "2363b47b6a6fe967a89f323253be9bd3a7508653",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSCommentBundle/zipball/65552ea5142e296d18b3c5b098bf424794726993",
+                "reference": "65552ea5142e296d18b3c5b098bf424794726993",
                 "shasum": ""
             },
             "require": {
@@ -1152,8 +1151,9 @@
                     "homepage": "https://github.com/friendsofsymfony/FOSCommentBundle/contributors"
                 },
                 {
-                    "name": "Alexander Mols",
-                    "email": "iam.asm89@gmail.com"
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com",
+                    "homepage": "http://asm89.github.io/"
                 }
             ],
             "description": "This Bundle provides threaded comment functionality for Symfony2 applications",
@@ -1163,7 +1163,7 @@
                 "forum",
                 "threads"
             ],
-            "time": "2014-07-31 22:54:27"
+            "time": "2014-07-09 00:21:03"
         },
         {
             "name": "friendsofsymfony/elastica-bundle",
@@ -1597,9 +1597,7 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": [
-
-                ]
+                "branch-alias": []
             },
             "autoload": {
                 "psr-0": {
@@ -3286,12 +3284,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "8fe99a9c451f4ee491a41671108fedcf1d583937"
+                "reference": "4b163e1b80d6e978c1004421a67529fcd6087fe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/8fe99a9c451f4ee491a41671108fedcf1d583937",
-                "reference": "8fe99a9c451f4ee491a41671108fedcf1d583937",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/4b163e1b80d6e978c1004421a67529fcd6087fe1",
+                "reference": "4b163e1b80d6e978c1004421a67529fcd6087fe1",
                 "shasum": ""
             },
             "require": {
@@ -3352,7 +3350,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2014-09-04 08:12:53"
+            "time": "2014-09-06 09:33:45"
         },
         {
             "name": "ob/highcharts-bundle",
@@ -4417,12 +4415,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "7654119673065e6e29f7e667a96a647ea0f84621"
+                "reference": "f16c718e5bdbef29c4ce7a25d0e6b20219af2360"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/7654119673065e6e29f7e667a96a647ea0f84621",
-                "reference": "7654119673065e6e29f7e667a96a647ea0f84621",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/f16c718e5bdbef29c4ce7a25d0e6b20219af2360",
+                "reference": "f16c718e5bdbef29c4ce7a25d0e6b20219af2360",
                 "shasum": ""
             },
             "require": {
@@ -4488,7 +4486,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-09-03 05:44:08"
+            "time": "2014-09-07 20:34:45"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -4740,6 +4738,71 @@
             "time": "2014-02-14 16:26:43"
         },
         {
+            "name": "sonata-project/comment-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataCommentBundle.git",
+                "reference": "701040a637c29184b22e9d2788ccf1f4357d2ff5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataCommentBundle/zipball/701040a637c29184b22e9d2788ccf1f4357d2ff5",
+                "reference": "701040a637c29184b22e9d2788ccf1f4357d2ff5",
+                "shasum": ""
+            },
+            "require": {
+                "friendsofsymfony/comment-bundle": "~2.0@dev",
+                "sonata-project/core-bundle": "~2.2",
+                "sonata-project/doctrine-extensions": "~1.0",
+                "sonata-project/easy-extends-bundle": "~2.1",
+                "symfony/console": "~2.2",
+                "symfony/form": "~2.2",
+                "symfony/http-foundation": "~2.2",
+                "symfony/security": "~2.2"
+            },
+            "require-dev": {
+                "sonata-project/classification-bundle": "~2.2",
+                "sonata-project/media-bundle": "~2.2"
+            },
+            "suggest": {
+                "sonata-project/doctrine-orm-admin-bundle": "~2.2"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\CommentBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "http://sonata-project.org"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataCommentBundle/contributors"
+                }
+            ],
+            "description": "Symfony SonataCommentBundle",
+            "homepage": "http://sonata-project.org/bundles/comment",
+            "keywords": [
+                "comment",
+                "sonata"
+            ],
+            "time": "2014-07-02 21:09:07"
+        },
+        {
             "name": "sonata-project/core-bundle",
             "version": "dev-master",
             "source": {
@@ -4800,6 +4863,57 @@
                 "sonata"
             ],
             "time": "2014-09-01 21:20:34"
+        },
+        {
+            "name": "sonata-project/datagrid-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataDatagridBundle.git",
+                "reference": "dba166c6c52591f1bfafa8514b848a3bae23a557"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataDatagridBundle/zipball/dba166c6c52591f1bfafa8514b848a3bae23a557",
+                "reference": "dba166c6c52591f1bfafa8514b848a3bae23a557",
+                "shasum": ""
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\DatagridBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org",
+                    "homepage": "http://sonata-project.org"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataDatagridBundle/contributors"
+                }
+            ],
+            "description": "Symfony SonataDatagridBundle",
+            "homepage": "http://sonata-project.org/bundles/datagrid",
+            "keywords": [
+                "datagrid",
+                "sonata"
+            ],
+            "time": "2014-05-19 14:33:23"
         },
         {
             "name": "sonata-project/doctrine-extensions",
@@ -5551,25 +5665,26 @@
         },
         {
             "name": "sonata-project/page-bundle",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataPageBundle.git",
-                "reference": "daacedf6c6c7cfa4da61877030ab732b32601fce"
+                "reference": "88b73f20c08e3d6e8cbcd7ab053f4787c32adc9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/daacedf6c6c7cfa4da61877030ab732b32601fce",
-                "reference": "daacedf6c6c7cfa4da61877030ab732b32601fce",
+                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/88b73f20c08e3d6e8cbcd7ab053f4787c32adc9d",
+                "reference": "88b73f20c08e3d6e8cbcd7ab053f4787c32adc9d",
                 "shasum": ""
             },
             "require": {
                 "friendsofsymfony/rest-bundle": "~1.1",
+                "jms/serializer-bundle": "~0.11",
                 "nelmio/api-doc-bundle": "~2.4",
                 "sonata-project/admin-bundle": "~2.2,>=2.2.9",
-                "sonata-project/cache": "~1.0",
-                "sonata-project/cache-bundle": "~2.1",
+                "sonata-project/cache-bundle": "~2.1,>=2.1.7",
                 "sonata-project/core-bundle": "~2.2@dev",
+                "sonata-project/datagrid-bundle": "~2.2@dev",
                 "sonata-project/doctrine-extensions": "~1.0",
                 "sonata-project/notification-bundle": "~2.2",
                 "sonata-project/seo-bundle": "~1.1",
@@ -5615,7 +5730,7 @@
                 "page",
                 "sonata"
             ],
-            "time": "2014-02-14 14:28:41"
+            "time": "2014-06-10 23:39:09"
         },
         {
             "name": "sonata-project/seo-bundle",
@@ -6729,6 +6844,76 @@
                 "templating"
             ],
             "time": "2014-07-05 12:19:05"
+        },
+        {
+            "name": "vich/uploader-bundle",
+            "version": "dev-master",
+            "target-dir": "Vich/UploaderBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dustin10/VichUploaderBundle.git",
+                "reference": "56c4bbedd890008a89f19ae04aa65c8d69491c61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/56c4bbedd890008a89f19ae04aa65c8d69491c61",
+                "reference": "56c4bbedd890008a89f19ae04aa65c8d69491c61",
+                "shasum": ""
+            },
+            "require": {
+                "jms/metadata": "~1.5",
+                "php": ">=5.3.2",
+                "symfony/finder": ">=2.0",
+                "symfony/framework-bundle": "~2.0",
+                "symfony/property-access": "~2.3"
+            },
+            "require-dev": {
+                "doctrine/mongodb-odm": "@dev",
+                "doctrine/orm": "@stable",
+                "knplabs/knp-gaufrette-bundle": "*",
+                "matthiasnoback/symfony-dependency-injection-test": "0.*",
+                "mikey179/vfsstream": "~1.0",
+                "oneup/flysystem-bundle": "dev-master",
+                "phpunit/phpunit": "~4.0",
+                "symfony/yaml": "@stable"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/mongodb-odm-bundle": "*",
+                "doctrine/orm": "*",
+                "doctrine/phpcr-odm": "~1.0",
+                "knplabs/knp-gaufrette-bundle": "*",
+                "symfony/yaml": "@stable",
+                "willdurand/propel-eventdispatcher-bundle": ">=1.2"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Vich\\UploaderBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dustin Dobervich",
+                    "email": "ddobervich@gmail.com"
+                }
+            ],
+            "description": "Ease file uploads attached to entities",
+            "homepage": "https://github.com/dustin10/VichUploaderBundle",
+            "keywords": [
+                "file uploads",
+                "upload"
+            ],
+            "time": "2014-08-20 11:24:16"
         },
         {
             "name": "white-october/pagerfanta-bundle",
@@ -7876,9 +8061,7 @@
             "time": "2013-01-13 10:24:48"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/doctrine-migrations-bundle": 20,
@@ -7892,11 +8075,12 @@
         "sonata-project/admin-bundle": 20,
         "sonata-project/doctrine-orm-admin-bundle": 20,
         "sonata-project/timeline-bundle": 20,
+        "sonata-project/datagrid-bundle": 20,
+        "sonata-project/comment-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
         "friendsofsymfony/elastica-bundle": 20,
         "friendsofsymfony/jsrouting-bundle": 20,
         "friendsofsymfony/oauth-server-bundle": 20,
-        "friendsofsymfony/comment-bundle": 20,
         "raulfraile/ladybug-bundle": 20,
         "shtumi/useful-bundle": 20,
         "craue/formflow-bundle": 20,
@@ -7911,13 +8095,11 @@
         "suncat/admin-page-board-bundle": 20,
         "hwi/oauth-bundle": 20,
         "nelmio/api-doc-bundle": 20,
-        "liuggio/excelbundle": 20
+        "liuggio/excelbundle": 20,
+        "vich/uploader-bundle": 20
     },
-    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

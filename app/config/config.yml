@@ -51,6 +51,7 @@ twig:
             - 'SonataFormatterBundle:Form:formatter.html.twig'
             - 'SonataMediaBundle:Form:media_widgets.html.twig'
             - 'SonataCoreBundle:Form:datepicker.html.twig'
+            - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -104,7 +105,7 @@ jms_security_extra:
 
 fos_elastica:
     clients:
-        default: { host: webhost.upr.edu.cu, port: 9200 }
+        default: { host: %elastic_host%, port: 9200 }
     serializer:
         callback_class: FOS\ElasticaBundle\Serializer\Callback
         serializer: serializer
@@ -135,3 +136,23 @@ fos_elastica:
                                 name: { boost: 5 }
                                 contentType: { boost: 4 }
                                 updatedAt: { boost: 4 }
+
+stof_doctrine_extensions:
+    default_locale: es_ES
+    orm:
+        default:
+            sluggable: false
+            timestampable: false
+            blameable: true
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        document_file:
+            uri_prefix:         /uploads/documents
+            upload_destination: %kernel.root_dir%/../web/uploads/documents
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
