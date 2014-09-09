@@ -1,0 +1,30 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+    {% for categoria in category %}
+        {% if loop.first %}
+            <div class="row">
+        {% elseif loop.index > 2 and (loop.index -1) is divisible by(3) %}
+            <div class="row">
+        {% endif %}
+
+        <div  class="col-md-4 col-sm-4">
+            <h2><a href="{{ path('fao_main_category_show', {'id' : categoria.id}) }}">{{ categoria.name }}</a></h2>
+
+            <ul>
+                {% for doc in document %}
+                    {% if doc.clasification == categoria %}
+                        <li><a href="{{ path('fao_main_show', {'id' : doc.id}) }}">{{ doc.titulo }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% if loop.index is divisible by(3) or loop.last %}
+            </div>
+        {% endif %}
+
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(category) }}
+    </div>
+{% endblock %}

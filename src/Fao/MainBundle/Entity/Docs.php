@@ -187,7 +187,7 @@ class Docs
     private $clasification;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\ClassificationBundle\Entity\Tag")
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\ClassificationBundle\Entity\Tag")
      */
     private $tags;
 
@@ -563,24 +563,41 @@ class Docs
     {
         return $this->clasification;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set tags
+     * Add tags
      *
      * @param \Application\Sonata\ClassificationBundle\Entity\Tag $tags
      * @return Docs
      */
-    public function setTags(\Application\Sonata\ClassificationBundle\Entity\Tag $tags = null)
+    public function addTag(\Application\Sonata\ClassificationBundle\Entity\Tag $tags)
     {
-        $this->tags = $tags;
+        $this->tags[] = $tags;
 
         return $this;
     }
 
     /**
+     * Remove tags
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Application\Sonata\ClassificationBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
      * Get tags
      *
-     * @return \Application\Sonata\ClassificationBundle\Entity\Tag 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getTags()
     {

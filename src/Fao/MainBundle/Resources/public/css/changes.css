@@ -391,3 +391,11 @@ a:hover, a:focus {
     margin-top: -10px;
 }
 
+h1, .h1{
+    color: #46A642;
+}
+/* ---------------- Paginaitor ----------------- */
+
+.navigation{
+    margin-left: 80%;
+}
