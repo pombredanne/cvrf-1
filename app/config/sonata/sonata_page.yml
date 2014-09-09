@@ -47,7 +47,7 @@ sonata_page:
 
     caches:
         esi:
-            token:    add an unique token here # default is a random value
+            token:    ~ # default is a random value
             version:  3                        # version 3 is the default on debian wheezy ...
             servers:
                 # you need to ajust this configuration to match your varnish configuration
