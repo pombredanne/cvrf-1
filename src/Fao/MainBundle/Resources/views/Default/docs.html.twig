@@ -28,7 +28,7 @@
 
             <h2><a href="{{ path('fao_main_show', {'id' : documento.id}) }}">{{ documento.titulo }}</a></h2>
 
-            <p>{{ documento.resumen| truncate(150)| raw }}</p>
+            <p>{{ documento.resumen| truncate(150, true)| raw }}</p>
             <div>
                 <a  href="{{ vich_uploader_asset(documento, 'document_file') }}" alt="{{ documento.fileName }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
             </div>
