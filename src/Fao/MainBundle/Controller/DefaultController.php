@@ -83,8 +83,10 @@ class DefaultController extends Controller
         );
 
         $dql = "SELECT d FROM FaoMainBundle:Docs d JOIN ApplicationSonataClassificationBundle:Category a
-                WITH d.clasification = a.id ORDER BY a.id ASC, d.id DESC";
-        $query = $em->createQuery($dql)->getResult();
+                WITH d.clasification = a.id WHERE d.estado = :estado ORDER BY a.id ASC, d.id DESC";
+        $query = $em->createQuery($dql);
+        $query->setParameter('estado', 'published');
+        $query = $query->getResult();
 
         return $this->render('FaoMainBundle:Default:category.html.twig', array( 'category' => $pagination, 'document' => $query));
     }
@@ -95,9 +97,10 @@ class DefaultController extends Controller
         $category = $this->getDoctrine()->getRepository('ApplicationSonataClassificationBundle:Category')->find($id);
 
         $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT d FROM FaoMainBundle:Docs d WHERE d.clasification = :category";
+        $dql = "SELECT d FROM FaoMainBundle:Docs d WHERE d.clasification = :category AND d.estado = :estado";
         $query = $em->createQuery($dql);
         $query->setParameter('category', $category);
+        $query->setParameter('estado', 'published');
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
