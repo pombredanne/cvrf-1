@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
 
     # Sonata Bundles
-    - { resource: sonata/services.yml }
     - { resource: sonata/sonata_intl.yml }
     - { resource: sonata/sonata_admin.yml }
 #    - { resource: sonata/sonata_page.yml }
@@ -16,8 +15,6 @@ imports:
     - { resource: sonata/sonata_notification.yml }
     - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_timeline.yml }
-
-
 
 framework:
     #esi:             ~

@@ -14,11 +14,6 @@ class DefaultController extends Controller
 
     public function docsAction()
     {
-       // $medias = $this->getDoctrine()->getRepository('ApplicationSonataMediaBundle:Media')->findBy(array( 'context' => 'default'));
-
-        //return $this->render('FaoMainBundle:Default:docs.html.twig', array('medias' => $medias));
-
-
         $em = $this->getDoctrine()->getManager();
         $dql = "SELECT d FROM FaoMainBundle:Docs d WHERE d.estado = :estado";
         $query = $em->createQuery($dql);
@@ -31,13 +26,7 @@ class DefaultController extends Controller
             9/*limit per page*/
         );
 
-        //$documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'Publicado'));
-        //return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
         return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $pagination));
-
-        //$documentos = $this->getDoctrine()->getRepository('FaoMainBundle:Docs')->findBy(array('estado' => 'published'));
-        //return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
-
     }
 
     public function terminosAction()
