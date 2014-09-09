@@ -9,8 +9,7 @@
 namespace Fao\MainBundle\Model;
 
 
-use Symfony\Component\HttpFoundation\Request;
-
-class DocsSearch {
+class DocsSearch
+{
 
 } 

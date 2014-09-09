@@ -26,8 +26,8 @@
         "sensio/generator-bundle": "~2.3",
 
         "doctrine/doctrine-bundle": "~1.2",
-        "doctrine/doctrine-migrations-bundle": "dev-master",
-        "doctrine/migrations": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
+        "doctrine/migrations": "1.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "doctrine/data-fixtures": "1.0.*@dev",
 
@@ -68,13 +68,12 @@
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
         "willdurand/faker-bundle": "~1.0",
-        "raulfraile/ladybug-bundle": "dev-master",
+        "raulfraile/ladybug-bundle": "1.0.*@dev",
         "stof/doctrine-extensions-bundle": "~1.1",
         "stephpy/TimelineBundle": "2.0.*@dev",
         "stephpy/timeline": "~1.0@dev",
-        "lexik/workflow-bundle": "dev-master",
+        "lexik/workflow-bundle": "0.3.*@dev",
         "white-october/pagerfanta-bundle": "1.0.*@dev",
-        "suncat/admin-page-board-bundle": "dev-master",
         "hwi/oauth-bundle": "0.4.*@dev",
         "nelmio/api-doc-bundle": "2.7.*@dev",
         "vich/uploader-bundle": "1.0.*@dev"

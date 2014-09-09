@@ -13,9 +13,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\FormatterBundle\Formatter\Pool as FormatterPool;
 
 class DocsAdmin extends Admin
