@@ -109,7 +109,11 @@ class Docs
 
     /**
      * @Vich\UploadableField(mapping="document_file", fileNameProperty="fileName")
-     *
+     *  @Assert\File(
+     *     maxSize = "50M",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Solo se admiten ficheros en formato PDF."
+     * )
      * @var File $flie
      */
     private $file;
