@@ -15,6 +15,14 @@ fao_main_show:
     pattern: /{id}/show
     defaults: { _controller: FaoMainBundle:Default:show }
 
+fao_main_category:
+    pattern: /category
+    defaults: { _controller: FaoMainBundle:Default:category }
+
+fao_main_category_show:
+    pattern: /category/{id}/show
+    defaults: { _controller: FaoMainBundle:Default:categoryshow }
+
 
 #fao_main_docs:
 #    pattern:  /documents

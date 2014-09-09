@@ -1,0 +1,29 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+    <h1>{{category.name}}</h1>
+    {% for documento in document %}
+        {% if loop.first %}
+            <div class="row">
+        {% elseif loop.index > 2 and (loop.index -1) is divisible by(3) %}
+            <div class="row">
+        {% endif %}
+
+            <div class="col-md-4 col-sm-4">
+                <h2><a href="{{ path('fao_main_show', {'id' : documento.id}) }}">{{ documento.titulo }}</a></h2>
+
+                <p>{{ documento.resumen| truncate(150)| raw }}</p>
+                <div>
+                    <a  href="{{ vich_uploader_asset(documento, 'document_file') }}" alt="{{ documento.fileName }}"><div class="downloadicon" data-icon="k"><div class="downloadtext">Download</div></div></a>
+                </div>
+            </div>
+
+        {% if loop.index is divisible by(3) or loop.last %}
+            </div>
+        {% endif %}
+
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(document) }}
+    </div>
+{% endblock %}
