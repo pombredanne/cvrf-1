@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use FOS\ElasticaBundle\Configuration\Search;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\Blameable\Traits\BlameableEntity;
 
@@ -598,4 +599,10 @@ class Docs
     {
         return $this->tags;
     }
+
+    public function isPublished()
+    {
+        return ('published' === $this->getEstado());
+    }
+
 }

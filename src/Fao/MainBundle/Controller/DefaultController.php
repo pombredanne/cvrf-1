@@ -52,7 +52,14 @@ class DefaultController extends Controller
         $searchTerm = $request->query->get('q');
         $documentos = $repository->find($searchTerm);
 
-        return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $documentos));
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $documentos,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            12/*limit per page*/
+        );
+
+        return $this->render('FaoMainBundle:Default:docs.html.twig', array( 'documentos' => $pagination));
     }
 
     public function showAction($id)

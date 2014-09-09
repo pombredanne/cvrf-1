@@ -124,8 +124,10 @@ fos_elastica:
         fao:
             finder: ~
             client: default
+
             types:
                 docs:
+                    indexable_callback: 'isPublished'
                     persistence:
                         driver: orm # orm, mongodb, propel are available
                         model: Fao\MainBundle\Entity\Docs
@@ -139,14 +141,9 @@ fos_elastica:
                         autor: { boost: 5 }
                         instituto: { boost: 4 }
                         pais: { boost: 3 }
-                        anno: { boost: 3 }
-                        fechaDePublicacion: { boost: 3 }
-                        archivo:
-                            type: "nested"
-                            properties:
-                                name: { boost: 5 }
-                                contentType: { boost: 4 }
-                                updatedAt: { boost: 4 }
+                        anno: { boost: 4 }
+                        fileName: { boost: 5 }
+                        updated: { boost: 3 }
 
 stof_doctrine_extensions:
     default_locale: es_ES
